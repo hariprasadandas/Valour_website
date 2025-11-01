@@ -11,17 +11,17 @@ function Contact() {
   }
 
   return (
-    <main className="px-4 md:px-8 py-12 max-w-6xl mx-auto text-gray-900">
-      <h1 className="text-4xl font-bold text-primary mb-6">Contact Us</h1>
-      <p className="text-xl leading-relaxed text-gray-700 mb-12">
+    <main className="px-4 sm:px-6 md:px-8 py-8 sm:py-12 max-w-7xl mx-auto text-gray-900 w-full">
+      <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-4 sm:mb-6">Contact Us</h1>
+      <p className="text-base sm:text-lg md:text-xl leading-relaxed text-gray-700 mb-6 sm:mb-12">
         Ready to discuss a project, partnership or job opportunity? Get in touch
         using the details below or send us a message.
       </p>
 
-      <div className="grid md:grid-cols-2 gap-8">
-        <div className="bg-secondary/20 p-8 rounded-lg shadow-sm">
-          <h3 className="text-2xl font-semibold text-primary mb-6">Contact Details</h3>
-          <div className="space-y-4 text-gray-700">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+        <div className="bg-secondary/20 p-6 sm:p-8 rounded-lg shadow-sm">
+          <h3 className="text-xl sm:text-2xl font-semibold text-primary mb-4">Contact Details</h3>
+          <div className="space-y-3 text-gray-700 text-sm sm:text-base">
             <p>
               Email:{' '}
               <a href="mailto:contact@valourtech.com" className="text-primary hover:text-primary/80 transition-colors">
@@ -35,7 +35,7 @@ function Contact() {
               </a>
             </p>
             <p>Phone: +1 (555) 123-4567</p>
-            <p>
+            <p className="text-sm sm:text-base">
               Address:<br />
               123 Valour Way, Suite 100<br />
               Anytown, USA
@@ -43,11 +43,11 @@ function Contact() {
           </div>
         </div>
 
-        <div className="border border-gray-200 p-8 rounded-lg shadow-sm">
-          <h3 className="text-2xl font-semibold text-primary mb-6">Send a Message</h3>
-          <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="border border-gray-200 p-6 sm:p-8 rounded-lg shadow-sm">
+          <h3 className="text-xl sm:text-2xl font-semibold text-primary mb-4">Send a Message</h3>
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
             <div>
-              <label htmlFor="name" className="block text-gray-700 font-medium mb-2">
+              <label htmlFor="name" className="block text-gray-700 font-medium mb-2 text-sm sm:text-base">
                 Your name
               </label>
               <input
@@ -59,7 +59,7 @@ function Contact() {
               />
             </div>
             <div>
-              <label htmlFor="email" className="block text-gray-700 font-medium mb-2">
+              <label htmlFor="email" className="block text-gray-700 font-medium mb-2 text-sm sm:text-base">
                 Email
               </label>
               <input
@@ -71,7 +71,7 @@ function Contact() {
               />
             </div>
             <div>
-              <label htmlFor="message" className="block text-gray-700 font-medium mb-2">
+              <label htmlFor="message" className="block text-gray-700 font-medium mb-2 text-sm sm:text-base">
                 Message
               </label>
               <textarea
@@ -84,7 +84,7 @@ function Contact() {
             </div>
             <button
               type="submit"
-              className="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+              className="w-full md:w-auto text-center px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
             >
               Send Message
             </button>
