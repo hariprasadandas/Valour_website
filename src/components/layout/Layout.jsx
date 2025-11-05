@@ -7,11 +7,13 @@ import { BrowserRouter as Router } from 'react-router-dom'
 function Layout() {
     return (
         <Router>
-            <Header />
-            <div>
-                <Routers />
+            <div className="min-h-screen w-screen max-w-[100vw] overflow-x-hidden">
+                <Header />
+                <div>
+                    <Routers />
+                </div>
+                <Footer />
             </div>
-            <Footer />
         </Router>
     )
 }

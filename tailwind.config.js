@@ -7,25 +7,40 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#0b2545',
-          light: '#3a6ea5',
-          dark: '#071a2f',
+          DEFAULT: '#6366f1',
+          light: '#818cf8',
+          dark: '#4f46e5',
         },
         accent: {
-          DEFAULT: '#fbbf24',
-          light: '#fde68a',
-          dark: '#b45309',
+          DEFAULT: '#f59e0b',
+          light: '#fbbf24',
+          dark: '#d97706',
         },
         surface: {
-          DEFAULT: '#f3f6fb',
-          dark: '#e5e9f2',
+          DEFAULT: '#f8fafc',
+          dark: '#1e293b',
         },
         card: {
-          DEFAULT: '#fff',
-          hover: '#f0f4ff',
+          DEFAULT: '#ffffff',
+          hover: '#f1f5f9',
         },
         danger: '#ef4444',
         success: '#22c55e',
+      },
+      animation: {
+        'gradient-x': 'gradient-x 15s ease infinite',
+      },
+      keyframes: {
+        'gradient-x': {
+          '0%, 100%': {
+            'background-size': '200% 200%',
+            'background-position': 'left center'
+          },
+          '50%': {
+            'background-size': '200% 200%',
+            'background-position': 'right center'
+          }
+        },
       },
       boxShadow: {
         'card': '0 2px 8px 0 rgba(11,37,69,0.08)',
