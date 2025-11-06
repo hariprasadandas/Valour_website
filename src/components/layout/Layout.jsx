@@ -9,7 +9,7 @@ function Layout() {
         <Router>
             <div className="min-h-screen w-screen max-w-[100vw] overflow-x-hidden">
                 <Header />
-                <div>
+                <div className="pt-20">
                     <Routers />
                 </div>
                 <Footer />

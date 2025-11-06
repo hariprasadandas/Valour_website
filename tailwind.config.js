@@ -29,6 +29,14 @@ module.exports = {
       },
       animation: {
         'gradient-x': 'gradient-x 15s ease infinite',
+        'float': 'float 6s ease-in-out infinite',
+        'float-delayed': 'float 6s ease-in-out infinite 2s',
+        'rotate': 'rotate 8s linear infinite',
+        'rotate-slow': 'rotate 12s linear infinite',
+        'jump': 'jump 3s ease-in-out infinite',
+        'jump-delayed': 'jump 3s ease-in-out infinite 1s',
+        'float-rotate': 'float 6s ease-in-out infinite, rotate 8s linear infinite',
+        'jump-float': 'jump 3s ease-in-out infinite, float 6s ease-in-out infinite',
       },
       keyframes: {
         'gradient-x': {
@@ -40,6 +48,30 @@ module.exports = {
             'background-size': '200% 200%',
             'background-position': 'right center'
           }
+        },
+        'float': {
+          '0%, 100%': {
+            transform: 'translateY(0px)',
+          },
+          '50%': {
+            transform: 'translateY(-20px)',
+          },
+        },
+        'rotate': {
+          '0%': {
+            transform: 'rotate(0deg)',
+          },
+          '100%': {
+            transform: 'rotate(360deg)',
+          },
+        },
+        'jump': {
+          '0%, 100%': {
+            transform: 'translateY(0px) scale(1)',
+          },
+          '50%': {
+            transform: 'translateY(-30px) scale(1.05)',
+          },
         },
       },
       boxShadow: {
