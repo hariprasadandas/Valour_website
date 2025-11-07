@@ -1,32 +1,75 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 // import HeroSection from '../hero/HeroSection'
-import bannerBg1 from '../../assets/banner-bg-1.avif' 
-import bannerBg2 from '../../assets/banner-bg-2.avif' 
-import bannerBg3 from '../../assets/banner-bg-3.avif' 
+import bannerBg1 from '../../assets/banner-bg-1.avif'
+import bannerBg2 from '../../assets/banner-bg-2.avif'
+import bannerBg3 from '../../assets/banner-bg-3.avif'
+import About from './About'
+import Services from './Services'
+import Team from './Team'
+import Clients from './Clients'
+import Careers from './Careers'
+import Contact from './Contact'
 
 
 function Home() {
+  const containerRef = useRef(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (containerRef.current) {
+        const container = containerRef.current;
+        const slideWidth = window.innerWidth;
+        const nextSlide = (currentSlide + 1) % 3;
+        setCurrentSlide(nextSlide);
+
+        // Use scrollLeft for immediate jump to avoid reverse scrolling
+        container.scrollLeft = nextSlide * slideWidth;
+      }
+    }, 4000); // Auto-scroll every 4 seconds
+
+    return () => clearInterval(interval);
+  }, [currentSlide]);
   return (
     <main className="text-gray-100 min-h-screen bg-gradient-to-b from-gray-900/90 via-gray-950 to-black">
-      {/* Banner Section with Horizontal Scrolling - First Display */}
-      <div className="relative w-full min-h-screen overflow-x-auto overflow-y-hidden bg-gradient-to-br from-gray-900 via-gray-950 to-black snap-x snap-mandatory">
+      {/* Banner Section with Auto Scrolling */}
+      <div ref={containerRef} className="relative w-full min-h-screen overflow-x-auto overflow-y-hidden bg-gradient-to-br from-gray-900 via-gray-950 to-black snap-x snap-mandatory" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+        {/* Slide Indicators */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex space-x-3">
+          {[0, 1, 2].map((index) => (
+            <button
+              key={index}
+              onClick={() => {
+                setCurrentSlide(index);
+                containerRef.current?.scrollTo({
+                  left: index * window.innerWidth,
+                  behavior: 'smooth'
+                });
+              }}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                currentSlide === index
+                  ? 'bg-white scale-125 shadow-lg'
+                  : 'bg-white/50 hover:bg-white/75'
+              }`}
+            />
+          ))}
+        </div>
         {/* Horizontal scrollable container */}
-        <div className="flex h-screen w-max">
+        <div className="flex h-screen w-max scroll-smooth">
           {/* Slide 1 - Main Banner */}
-          <div className="relative w-screen h-screen flex-shrink-0 flex items-center justify-center snap-center overflow-hidden">
+          <div className={`relative w-screen h-screen flex-shrink-0 flex items-center justify-center snap-center overflow-hidden transition-all duration-1000 ease-in-out ${currentSlide === 0 ? 'opacity-100 scale-100' : 'opacity-80 scale-95'}`}>
             {/* Background Image */}
-            <div 
+            <div
               className="absolute inset-0 bg-cover bg-center bg-no-repeat"
               style={{
                 backgroundImage: `url(${bannerBg1})`,
-                // Replace the URL above with: `url(${bannerBg})` if using local image
               }}
             >
               {/* Dark overlay for better text readability */}
               <div className="absolute inset-0 bg-gradient-to-br from-gray-900/80 via-gray-950/70 to-black/80"></div>
             </div>
-            
+
             {/* Animated background elements */}
             <div className="absolute inset-0 overflow-hidden z-0">
               <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-float"></div>
@@ -56,30 +99,20 @@ function Home() {
                   We design and build secure, scalable software and cloud platforms
                 </p>
 
-                {/* Animated decorative elements */}
+                {/* Animated decorative elements
                 <div className="flex justify-center items-center gap-4 sm:gap-6 mt-8 sm:mt-12">
                   <div className="w-3 h-3 bg-blue-400 rounded-full animate-jump"></div>
                   <div className="w-3 h-3 bg-indigo-400 rounded-full animate-jump-delayed"></div>
                   <div className="w-3 h-3 bg-purple-400 rounded-full animate-jump"></div>
-                </div>
-              </div>
-            </div>
-
-            {/* Scroll indicator - Horizontal */}
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-float">
-              <div className="flex flex-col items-center gap-2">
-                <span className="text-blue-400/70 text-sm">Scroll →</span>
-                <div className="w-10 h-6 border-2 border-blue-400/50 rounded-full flex justify-center items-center">
-                  <div className="w-2 h-2 bg-blue-400/70 rounded-full animate-jump"></div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
 
           {/* Slide 2 - Additional Content */}
-          <div className="relative w-screen h-screen flex-shrink-0 flex items-center justify-center snap-center overflow-hidden">
+          <div className={`relative w-screen h-screen flex-shrink-0 flex items-center justify-center snap-center overflow-hidden transition-all duration-1000 ease-in-out ${currentSlide === 1 ? 'opacity-100 scale-100' : 'opacity-80 scale-95'}`}>
             {/* Background Image */}
-            <div 
+            <div
               className="absolute inset-0 bg-cover bg-center bg-no-repeat"
               style={{
                 backgroundImage: `url(${bannerBg2})`,
@@ -88,7 +121,7 @@ function Home() {
               {/* Dark overlay for better text readability */}
               <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/70 via-purple-900/60 to-blue-900/70"></div>
             </div>
-            
+
             <div className="absolute inset-0 overflow-hidden z-0">
               <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl animate-float"></div>
               <div className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-float-delayed"></div>
@@ -121,9 +154,9 @@ function Home() {
           </div>
 
           {/* Slide 3 - Services Preview */}
-          <div className="relative w-screen h-screen flex-shrink-0 flex items-center justify-center snap-center overflow-hidden">
+          <div className={`relative w-screen h-screen flex-shrink-0 flex items-center justify-center snap-center overflow-hidden transition-all duration-1000 ease-in-out ${currentSlide === 2 ? 'opacity-100 scale-100' : 'opacity-80 scale-95'}`}>
             {/* Background Image */}
-            <div 
+            <div
               className="absolute inset-0 bg-cover bg-center bg-no-repeat"
               style={{
                 backgroundImage: `url(${bannerBg3})`,
@@ -133,7 +166,7 @@ function Home() {
               {/* Dark overlay for better text readability */}
               <div className="absolute inset-0 bg-gradient-to-br from-blue-900/70 via-indigo-900/60 to-purple-900/70"></div>
             </div>
-            
+
             <div className="absolute inset-0 overflow-hidden z-0">
               <div className="absolute top-1/2 left-1/3 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-rotate-slow"></div>
               <div className="absolute bottom-1/4 right-1/3 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-float"></div>
@@ -201,42 +234,17 @@ function Home() {
         </div>
       </HeroSection> */}
 
-      <div className="relative z-10 bg-gray-900/90 backdrop-blur-xl border-t border-gray-800/50 w-full">
-        <div className="px-4 sm:px-4 md:px-8 max-w-7xl mx-auto w-full">
-          <section className="py-8 sm:py-12">
-            <h2 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8 text-white">Core Services</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-              <div className="p-5 sm:p-6 bg-gray-900/90 backdrop-blur-xl rounded-lg shadow-2xl hover:shadow-3xl hover:bg-gray-800/90 transition-all duration-200 border border-gray-700/50">
-                <strong className="block text-base sm:text-lg font-semibold text-white mb-2">
-                  Engineering
-                </strong>
-                <p className="text-blue-100 text-sm sm:text-base">
-                  Custom web & mobile app development with modern stacks.
-                </p>
-              </div>
-              <div className="p-5 sm:p-6 bg-gray-900/90 backdrop-blur-xl rounded-lg shadow-2xl hover:shadow-3xl hover:bg-gray-800/90 transition-all duration-200 border border-gray-700/50">
-                <strong className="block text-base sm:text-lg font-semibold text-white mb-2">
-                  Cloud & Infra
-                </strong>
-                <p className="text-blue-100 text-sm sm:text-base">
-                  Design, migration and operations on public cloud platforms.
-                </p>
-              </div>
-              <div className="p-5 sm:p-6 bg-gray-900/90 backdrop-blur-xl rounded-lg shadow-2xl hover:shadow-3xl hover:bg-gray-800/90 transition-all duration-200 border border-gray-700/50">
-                <strong className="block text-base sm:text-lg font-semibold text-white mb-2">
-                  Security
-                </strong>
-                <p className="text-blue-100 text-sm sm:text-base">
-                  Security assessments, threat modelling and remediation.
-                </p>
-              </div>
-            </div>
-          </section>
-        </div>
-      </div>
+
+
+
+      <About />
+      <Services />
+      <Team />
+      <Clients />
+      <Careers />
+      <Contact />
     </main>
   )
 }
 
 export default Home
-

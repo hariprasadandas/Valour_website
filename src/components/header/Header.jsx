@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../../assets/Logo.webp'
 
 function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false)
+  const servicesDropdownRef = useRef(null)
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false)
   const toggleMobileMenu = () => setIsMobileMenuOpen((v) => !v)
+  const toggleServicesDropdown = () => setIsServicesDropdownOpen((prev) => !prev)
 
   useEffect(() => {
     if (isMobileMenuOpen) {
@@ -17,6 +20,16 @@ function Header() {
       }
     }
   }, [isMobileMenuOpen])
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (servicesDropdownRef.current && !servicesDropdownRef.current.contains(event.target)) {
+        setIsServicesDropdownOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 sm:px-8 py-4 w-full max-w-[100vw] backdrop-blur-md shadow-lg" style={{background: '#0b2545', color: '#fff'}}>
@@ -31,10 +44,71 @@ function Header() {
       {/* Desktop navigation */}
       <nav className="hidden md:flex gap-5">
         <Link to="/" className="text-white px-2 py-1 rounded transition-all duration-200 hover:bg-white/10 hover:underline">Home</Link>
-        <Link to="/about" className="text-white px-2 py-1 rounded transition-all duration-200 hover:bg-white/10 hover:underline">About</Link>
-        <Link to="/services" className="text-white px-2 py-1 rounded transition-all duration-200 hover:bg-white/10 hover:underline">Services</Link>
+        <Link to="/about" className="text-white px-2 py-1 rounded transition-all duration-200 hover:bg-white/10 hover:underline">Who We Are</Link>
+        <div
+          className="relative"
+          ref={servicesDropdownRef}
+          onMouseEnter={() => setIsServicesDropdownOpen(true)}
+          onMouseLeave={() => setIsServicesDropdownOpen(false)}
+        >
+          <Link
+            to="/services"
+            className="text-white px-2 py-1 rounded transition-all duration-200 hover:bg-white/10 hover:underline flex items-center gap-1"
+            onClick={() => setIsServicesDropdownOpen(false)}
+          >
+            Services
+            <svg
+              className={`w-4 h-4 transition-transform duration-200 ${isServicesDropdownOpen ? 'rotate-180' : ''}`}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </Link>
+          {isServicesDropdownOpen && (
+            <div className="absolute top-full left-0 mt-2 w-64 bg-gray-900/95 backdrop-blur-md rounded-lg shadow-xl border border-gray-700/50 z-50">
+              <div className="py-2">
+                <Link
+                  to="/services#salesforce"
+                  className="block px-4 py-3 text-gray-100 hover:bg-blue-900/50 hover:text-blue-400 transition-colors duration-200"
+                  onClick={() => setIsServicesDropdownOpen(false)}
+                >
+                  <div className="font-semibold">Salesforce Development</div>
+                  <div className="text-sm text-gray-400">Custom Salesforce solutions and integrations</div>
+                </Link>
+                <Link
+                  to="/services#web-development"
+                  className="block px-4 py-3 text-gray-100 hover:bg-blue-900/50 hover:text-blue-400 transition-colors duration-200"
+                  onClick={() => setIsServicesDropdownOpen(false)}
+                >
+                  <div className="font-semibold">Web Development</div>
+                  <div className="text-sm text-gray-400">Modern web applications and platforms</div>
+                </Link>
+                <Link
+                  to="/services#ai-tools"
+                  className="block px-4 py-3 text-gray-100 hover:bg-blue-900/50 hover:text-blue-400 transition-colors duration-200"
+                  onClick={() => setIsServicesDropdownOpen(false)}
+                >
+                  <div className="font-semibold">AI Tools & Solutions</div>
+                  <div className="text-sm text-gray-400">AI-powered tools and intelligent automation</div>
+                </Link>
+                <div className="border-t border-gray-700 my-2"></div>
+                <Link
+                  to="/services"
+                  className="block px-4 py-3 text-blue-400 hover:bg-blue-900/50 font-semibold transition-colors duration-200"
+                  onClick={() => setIsServicesDropdownOpen(false)}
+                >
+                  View All Services →
+                </Link>
+              </div>
+            </div>
+          )}
+        </div>
+        <Link to="/our-team" className="text-white px-2 py-1 rounded transition-all duration-200 hover:bg-white/10 hover:underline">Leadership Team</Link>
+        <Link to="/our-clients" className="text-white px-2 py-1 rounded transition-all duration-200 hover:bg-white/10 hover:underline">Our Clients</Link>
         <Link to="/careers" className="text-white px-2 py-1 rounded transition-all duration-200 hover:bg-white/10 hover:underline">Careers</Link>
-        <Link to="/contact" className="text-white px-2 py-1 rounded transition-all duration-200 hover:bg-white/10 hover:underline">Contact</Link>
+        <Link to="/contact" className="text-white px-2 py-1 rounded transition-all duration-200 hover:bg-white/10 hover:underline">Contact Us</Link>
       </nav>
 
       {/* Mobile hamburger */}
@@ -91,10 +165,45 @@ function Header() {
         </div>
         <nav className="flex flex-col gap-1 p-4">
           <Link to="/" onClick={closeMobileMenu} className="px-3 py-2 rounded hover:bg-white/10">Home</Link>
-          <Link to="/about" onClick={closeMobileMenu} className="px-3 py-2 rounded hover:bg-white/10">About</Link>
-          <Link to="/services" onClick={closeMobileMenu} className="px-3 py-2 rounded hover:bg-white/10">Services</Link>
+          <Link to="/about" onClick={closeMobileMenu} className="px-3 py-2 rounded hover:bg-white/10">Who We Are</Link>
+          <div className="space-y-1">
+            <button
+              onClick={toggleServicesDropdown}
+              className="w-full text-left px-3 py-2 rounded hover:bg-white/10 flex items-center justify-between"
+              aria-expanded={isServicesDropdownOpen}
+              aria-haspopup="true"
+            >
+              Services
+              <svg
+                className={`w-4 h-4 transition-transform duration-200 ${isServicesDropdownOpen ? 'rotate-180' : ''}`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            {isServicesDropdownOpen && (
+              <div className="ml-4 space-y-1">
+                <Link to="/services#salesforce" onClick={closeMobileMenu} className="block px-3 py-2 text-sm rounded hover:bg-white/10">
+                  Salesforce Development
+                </Link>
+                <Link to="/services#web-development" onClick={closeMobileMenu} className="block px-3 py-2 text-sm rounded hover:bg-white/10">
+                  Web Development
+                </Link>
+                <Link to="/services#ai-tools" onClick={closeMobileMenu} className="block px-3 py-2 text-sm rounded hover:bg-white/10">
+                  AI Tools & Solutions
+                </Link>
+                <Link to="/services" onClick={closeMobileMenu} className="block px-3 py-2 text-sm rounded hover:bg-white/10 font-semibold">
+                  View All Services →
+                </Link>
+              </div>
+            )}
+          </div>
+          <Link to="/our-team" onClick={closeMobileMenu} className="px-3 py-2 rounded hover:bg-white/10">Leadership Team</Link>
+          <Link to="/our-clients" onClick={closeMobileMenu} className="px-3 py-2 rounded hover:bg-white/10">Our Clients</Link>
           <Link to="/careers" onClick={closeMobileMenu} className="px-3 py-2 rounded hover:bg-white/10">Careers</Link>
-          <Link to="/contact" onClick={closeMobileMenu} className="px-3 py-2 rounded hover:bg-white/10">Contact</Link>
+          <Link to="/contact" onClick={closeMobileMenu} className="px-3 py-2 rounded hover:bg-white/10">Contact Us</Link>
         </nav>
       </aside>
     </header>
