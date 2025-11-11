@@ -9,8 +9,8 @@ function Footer() {
 						<h3 className="text-lg font-semibold mb-3">Valour Technologies</h3>
 						<p className="text-sm text-white/90 mb-4">Innovate. Secure. Scale.</p>
 						<p className="text-sm mb-2">We design and build secure, scalable software and cloud platforms that help organizations accelerate digital transformation.</p>
-						<p className="text-sm mb-1">Email: <a href="mailto:contact@valourtech.com" className="text-blue-200 hover:text-blue-100 transition-colors">contact@valourtech.com</a></p>
-						<p className="text-sm">Phone: +1 (555) 123-4567</p>
+						<p className="text-sm mb-1">Email: <a href="mailto:info@valourtechnologies.com" className="text-blue-200 hover:text-blue-100 transition-colors">info@valourtechnologies.com</a></p>
+						<p className="text-sm">Phone: +91 9515272424</p>
 					</div>
 
 					<div className="w-full">

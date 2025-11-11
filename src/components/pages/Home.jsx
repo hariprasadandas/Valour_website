@@ -27,7 +27,7 @@ function Home() {
         // Use scrollLeft for immediate jump to avoid reverse scrolling
         container.scrollLeft = nextSlide * slideWidth;
       }
-    }, 4000); // Auto-scroll every 4 seconds
+    }, 2000); // Auto-scroll every 4 seconds
 
     return () => clearInterval(interval);
   }, [currentSlide]);
@@ -239,8 +239,8 @@ function Home() {
 
       <About />
       <Services />
-      <Team />
-      <Clients />
+      {/* <Team />
+      <Clients /> */}
       <Careers />
       <Contact />
     </main>

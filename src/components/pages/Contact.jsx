@@ -27,17 +27,17 @@ function Contact() {
             <div className="space-y-4 text-gray-300">
               <p>
                 Email:{' '}
-                <a href="mailto:contact@valourtech.com" className="text-blue-400 hover:text-blue-300 transition-colors">
-                  contact@valourtech.com
+                <a href="mailto:info@valourtechnologies.com" className="text-blue-400 hover:text-blue-300 transition-colors">
+                  info@valourtechnologies.com
                 </a>
               </p>
               <p>
                 Careers:{' '}
-                <a href="mailto:careers@valourtech.com" className="text-blue-400 hover:text-blue-300 transition-colors">
-                  careers@valourtech.com
+                <a href="mailto:careers@valourtechnologies.com" className="text-blue-400 hover:text-blue-300 transition-colors">
+                  careers@valourtechnologies.com
                 </a>
               </p>
-              <p>Phone: +1 (555) 123-4567</p>
+              <p>Phone: +91 9515272424</p>
               <p>
                 Address:<br />
                 123 Valour Way, Suite 100<br />
