@@ -37,6 +37,7 @@ module.exports = {
         'jump-delayed': 'jump 3s ease-in-out infinite 1s',
         'float-rotate': 'float 6s ease-in-out infinite, rotate 8s linear infinite',
         'jump-float': 'jump 3s ease-in-out infinite, float 6s ease-in-out infinite',
+        'client-marquee': 'client-marquee 15s linear infinite',
       },
       keyframes: {
         'gradient-x': {
@@ -71,6 +72,14 @@ module.exports = {
           },
           '50%': {
             transform: 'translateY(-30px) scale(1.05)',
+          },
+        },
+        'client-marquee': {
+          '0%': {
+            transform: 'translateX(0)',
+          },
+          '100%': {
+            transform: 'translateX(-50%)',
           },
         },
       },

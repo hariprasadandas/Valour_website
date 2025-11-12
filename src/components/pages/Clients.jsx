@@ -1,38 +1,40 @@
 import React from 'react';
 
+export const CLIENTS_DATA = [
+  {
+    name: 'TechCorp',
+    description: 'Leading technology solutions provider.',
+    logo: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=160&h=80&fit=crop',
+  },
+  {
+    name: 'Innovate Ltd',
+    description: 'Innovation-driven software company.',
+    logo: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=160&h=80&fit=crop',
+  },
+  {
+    name: 'SecureNet',
+    description: 'Cybersecurity experts.',
+    logo: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=160&h=80&fit=crop',
+  },
+  {
+    name: 'CloudMasters',
+    description: 'Cloud infrastructure specialists.',
+    logo: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=160&h=80&fit=crop',
+  },
+  {
+    name: 'DataFlow Inc',
+    description: 'Data analytics and processing.',
+    logo: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=160&h=80&fit=crop',
+  },
+  {
+    name: 'WebSolutions',
+    description: 'Web development and design.',
+    logo: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=160&h=80&fit=crop',
+  },
+];
+
 const Clients = () => {
-  const clients = [
-    {
-      name: 'TechCorp',
-      description: 'Leading technology solutions provider.',
-      logo: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=100&h=50&fit=crop',
-    },
-    {
-      name: 'Innovate Ltd',
-      description: 'Innovation-driven software company.',
-      logo: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=100&h=50&fit=crop',
-    },
-    {
-      name: 'SecureNet',
-      description: 'Cybersecurity experts.',
-      logo: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=100&h=50&fit=crop',
-    },
-    {
-      name: 'CloudMasters',
-      description: 'Cloud infrastructure specialists.',
-      logo: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=100&h=50&fit=crop',
-    },
-    {
-      name: 'DataFlow Inc',
-      description: 'Data analytics and processing.',
-      logo: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=100&h=50&fit=crop',
-    },
-    {
-      name: 'WebSolutions',
-      description: 'Web development and design.',
-      logo: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=100&h=50&fit=crop',
-    },
-  ];
+  const clients = CLIENTS_DATA;
 
   return (
     <main className="text-gray-100 min-h-screen bg-gradient-to-b from-gray-900/90 via-gray-950 to-black">
