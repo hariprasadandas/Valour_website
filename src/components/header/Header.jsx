@@ -43,8 +43,8 @@ function Header() {
 
       {/* Desktop navigation */}
       <nav className="hidden md:flex gap-5">
-        <Link to="/" className="text-white px-2 py-1 rounded transition-all duration-200 hover:bg-white/10 hover:underline">Home</Link>
-        <Link to="/about" className="text-white px-2 py-1 rounded transition-all duration-200 hover:bg-white/10 hover:underline">Who We Are</Link>
+        <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-white px-2 py-1 rounded transition-all duration-200 hover:bg-white/10 hover:underline">Home</Link>
+        <Link to="/about" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-white px-2 py-1 rounded transition-all duration-200 hover:bg-white/10 hover:underline">Who We Are</Link>
         <div
           className="relative"
           ref={servicesDropdownRef}
@@ -54,7 +54,7 @@ function Header() {
           <Link
             to="/services"
             className="text-white px-2 py-1 rounded transition-all duration-200 hover:bg-white/10 hover:underline flex items-center gap-1"
-            onClick={() => setIsServicesDropdownOpen(false)}
+            onClick={() => { setIsServicesDropdownOpen(false); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
           >
             Services
             <svg
@@ -72,7 +72,7 @@ function Header() {
                 <Link
                   to="/services#salesforce"
                   className="block px-4 py-3 text-gray-100 hover:bg-blue-900/50 hover:text-blue-400 transition-colors duration-200"
-                  onClick={() => setIsServicesDropdownOpen(false)}
+                  onClick={() => { setIsServicesDropdownOpen(false); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
                 >
                   <div className="font-semibold">Salesforce Development</div>
                   <div className="text-sm text-gray-400">Custom Salesforce solutions and integrations</div>
@@ -80,7 +80,7 @@ function Header() {
                 <Link
                   to="/services#web-development"
                   className="block px-4 py-3 text-gray-100 hover:bg-blue-900/50 hover:text-blue-400 transition-colors duration-200"
-                  onClick={() => setIsServicesDropdownOpen(false)}
+                  onClick={() => { setIsServicesDropdownOpen(false); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
                 >
                   <div className="font-semibold">Web Development</div>
                   <div className="text-sm text-gray-400">Modern web applications and platforms</div>
@@ -88,7 +88,7 @@ function Header() {
                 <Link
                   to="/services#ai-tools"
                   className="block px-4 py-3 text-gray-100 hover:bg-blue-900/50 hover:text-blue-400 transition-colors duration-200"
-                  onClick={() => setIsServicesDropdownOpen(false)}
+                  onClick={() => { setIsServicesDropdownOpen(false); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
                 >
                   <div className="font-semibold">AI Tools & Solutions</div>
                   <div className="text-sm text-gray-400">AI-powered tools and intelligent automation</div>
@@ -97,7 +97,7 @@ function Header() {
                 <Link
                   to="/services"
                   className="block px-4 py-3 text-blue-400 hover:bg-blue-900/50 font-semibold transition-colors duration-200"
-                  onClick={() => setIsServicesDropdownOpen(false)}
+                  onClick={() => { setIsServicesDropdownOpen(false); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
                 >
                   View All Services →
                 </Link>
@@ -105,10 +105,10 @@ function Header() {
             </div>
           )}
         </div>
-        <Link to="/our-team" className="text-white px-2 py-1 rounded transition-all duration-200 hover:bg-white/10 hover:underline">Leadership Team</Link>
-        <Link to="/our-clients" className="text-white px-2 py-1 rounded transition-all duration-200 hover:bg-white/10 hover:underline">Our Clients</Link>
-        <Link to="/careers" className="text-white px-2 py-1 rounded transition-all duration-200 hover:bg-white/10 hover:underline">Careers</Link>
-        <Link to="/contact" className="text-white px-2 py-1 rounded transition-all duration-200 hover:bg-white/10 hover:underline">Contact Us</Link>
+        <Link to="/our-team" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-white px-2 py-1 rounded transition-all duration-200 hover:bg-white/10 hover:underline">Leadership Team</Link>
+        <Link to="/our-clients" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-white px-2 py-1 rounded transition-all duration-200 hover:bg-white/10 hover:underline">Our Clients</Link>
+        <Link to="/careers" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-white px-2 py-1 rounded transition-all duration-200 hover:bg-white/10 hover:underline">Careers</Link>
+        <Link to="/contact" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-white px-2 py-1 rounded transition-all duration-200 hover:bg-white/10 hover:underline">Contact Us</Link>
       </nav>
 
       {/* Mobile hamburger */}
@@ -164,8 +164,8 @@ function Header() {
           </button>
         </div>
         <nav className="flex flex-col gap-1 p-4">
-          <Link to="/" onClick={closeMobileMenu} className="px-3 py-2 rounded hover:bg-white/10">Home</Link>
-          <Link to="/about" onClick={closeMobileMenu} className="px-3 py-2 rounded hover:bg-white/10">Who We Are</Link>
+          <Link to="/" onClick={() => { closeMobileMenu(); window.scrollTo({ top: 0, behavior: 'smooth' }) }} className="px-3 py-2 rounded hover:bg-white/10">Home</Link>
+          <Link to="/about" onClick={() => { closeMobileMenu(); window.scrollTo({ top: 0, behavior: 'smooth' }) }} className="px-3 py-2 rounded hover:bg-white/10">Who We Are</Link>
           <div className="space-y-1">
             <button
               onClick={toggleServicesDropdown}
@@ -185,25 +185,25 @@ function Header() {
             </button>
             {isServicesDropdownOpen && (
               <div className="ml-4 space-y-1">
-                <Link to="/services#salesforce" onClick={closeMobileMenu} className="block px-3 py-2 text-sm rounded hover:bg-white/10">
+                <Link to="/services#salesforce" onClick={() => { closeMobileMenu(); window.scrollTo({ top: 0, behavior: 'smooth' }) }} className="block px-3 py-2 text-sm rounded hover:bg-white/10">
                   Salesforce Development
                 </Link>
-                <Link to="/services#web-development" onClick={closeMobileMenu} className="block px-3 py-2 text-sm rounded hover:bg-white/10">
+                <Link to="/services#web-development" onClick={() => { closeMobileMenu(); window.scrollTo({ top: 0, behavior: 'smooth' }) }} className="block px-3 py-2 text-sm rounded hover:bg-white/10">
                   Web Development
                 </Link>
-                <Link to="/services#ai-tools" onClick={closeMobileMenu} className="block px-3 py-2 text-sm rounded hover:bg-white/10">
+                <Link to="/services#ai-tools" onClick={() => { closeMobileMenu(); window.scrollTo({ top: 0, behavior: 'smooth' }) }} className="block px-3 py-2 text-sm rounded hover:bg-white/10">
                   AI Tools & Solutions
                 </Link>
-                <Link to="/services" onClick={closeMobileMenu} className="block px-3 py-2 text-sm rounded hover:bg-white/10 font-semibold">
+                <Link to="/services" onClick={() => { closeMobileMenu(); window.scrollTo({ top: 0, behavior: 'smooth' }) }} className="block px-3 py-2 text-sm rounded hover:bg-white/10 font-semibold">
                   View All Services →
                 </Link>
               </div>
             )}
           </div>
-          <Link to="/our-team" onClick={closeMobileMenu} className="px-3 py-2 rounded hover:bg-white/10">Leadership Team</Link>
-          <Link to="/our-clients" onClick={closeMobileMenu} className="px-3 py-2 rounded hover:bg-white/10">Our Clients</Link>
-          <Link to="/careers" onClick={closeMobileMenu} className="px-3 py-2 rounded hover:bg-white/10">Careers</Link>
-          <Link to="/contact" onClick={closeMobileMenu} className="px-3 py-2 rounded hover:bg-white/10">Contact Us</Link>
+          <Link to="/our-team" onClick={() => { closeMobileMenu(); window.scrollTo({ top: 0, behavior: 'smooth' }) }} className="px-3 py-2 rounded hover:bg-white/10">Leadership Team</Link>
+          <Link to="/our-clients" onClick={() => { closeMobileMenu(); window.scrollTo({ top: 0, behavior: 'smooth' }) }} className="px-3 py-2 rounded hover:bg-white/10">Our Clients</Link>
+          <Link to="/careers" onClick={() => { closeMobileMenu(); window.scrollTo({ top: 0, behavior: 'smooth' }) }} className="px-3 py-2 rounded hover:bg-white/10">Careers</Link>
+          <Link to="/contact" onClick={() => { closeMobileMenu(); window.scrollTo({ top: 0, behavior: 'smooth' }) }} className="px-3 py-2 rounded hover:bg-white/10">Contact Us</Link>
         </nav>
       </aside>
     </header>

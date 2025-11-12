@@ -7,7 +7,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 function Layout() {
     return (
         <Router>
-            <div className="min-h-screen w-screen max-w-[100vw] overflow-x-hidden">
+            <div className="min-h-screen w-screen max-w-[100vw] overflow-x-hidden bg-gradient-to-b from-slate-50 via-blue-50/30 to-indigo-50/20">
                 <Header />
                 <div className="pt-20">
                     <Routers />

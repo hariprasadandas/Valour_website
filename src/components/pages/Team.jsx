@@ -30,19 +30,21 @@ const Team = () => {
 
   return (
     <main className="text-gray-100 min-h-screen bg-gradient-to-b from-gray-900/90 via-gray-950 to-black">
-      <div className="px-4 sm:px-6 md:px-8 max-w-7xl mx-auto py-12">
+      <div className="px-4 sm:px-6 md:px-8 max-w-7xl mx-auto py-12 space-y-12">
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">
           Our Leadership Team
         </h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="bg-white/70 backdrop-blur-md rounded-3xl border border-blue-200/50 shadow-xl px-6 sm:px-8 py-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {teamMembers.map((member, index) => (
-            <div key={index} className="bg-gray-900/60 backdrop-blur-md rounded-xl p-6 border border-gray-700/50 hover:bg-gray-800/60 transition-all duration-200 shadow-lg">
-              <img src={member.image} alt={member.name} className="w-24 h-24 rounded-full mx-auto mb-4" />
-              <h3 className="text-xl font-bold text-white text-center mb-2">{member.name}</h3>
-              <p className="text-indigo-400 text-center mb-4">{member.role}</p>
-              <p className="text-gray-300 text-sm text-center">{member.bio}</p>
-            </div>
+              <div key={index} className="bg-white rounded-xl p-6 border border-blue-200/60 shadow-lg hover:shadow-xl transition-all duration-200">
+                <img src={member.image} alt={member.name} className="w-24 h-24 rounded-full mx-auto mb-4 object-cover shadow ring-4 ring-blue-100" />
+                <h3 className="text-xl font-bold text-gray-800 text-center mb-1">{member.name}</h3>
+                <p className="text-blue-600 font-medium text-center mb-4">{member.role}</p>
+                <p className="text-gray-600 text-sm text-center">{member.bio}</p>
+              </div>
           ))}
+          </div>
         </div>
       </div>
     </main>

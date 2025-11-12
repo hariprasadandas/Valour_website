@@ -34,7 +34,7 @@ function Home() {
   return (
     <main className="text-gray-100 min-h-screen bg-gradient-to-b from-gray-900/90 via-gray-950 to-black">
       {/* Banner Section with Auto Scrolling */}
-      <div ref={containerRef} className="relative w-full min-h-screen overflow-x-auto overflow-y-hidden bg-gradient-to-br from-gray-900 via-gray-950 to-black snap-x snap-mandatory" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+      <div ref={containerRef} className="relative w-full min-h-screen overflow-x-auto overflow-y-hidden snap-x snap-mandatory" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
         {/* Slide Indicators */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex space-x-3">
           {[0, 1, 2].map((index) => (
@@ -67,35 +67,30 @@ function Home() {
               }}
             >
               {/* Dark overlay for better text readability */}
-              <div className="absolute inset-0 bg-gradient-to-br from-gray-900/80 via-gray-950/70 to-black/80"></div>
+              <div className="absolute inset-0 bg-black/60"></div>
             </div>
 
-            {/* Animated background elements */}
-            <div className="absolute inset-0 overflow-hidden z-0">
-              <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-float"></div>
-              <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-float-delayed"></div>
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-indigo-500/15 rounded-full blur-3xl animate-rotate-slow"></div>
-            </div>
+            {/* Animated background elements removed for neutral theme */}
 
             <div className="relative z-10 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto w-full text-center">
               <div className="space-y-6 sm:space-y-8 md:space-y-10">
                 {/* Main heading with floating and rotating effect */}
                 <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold mb-6 sm:mb-8">
-                  <span className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 animate-float-rotate">
+                  <span className="inline-block text-white animate-float-rotate">
                     Valour
                   </span>
-                  <span className="inline-block mx-2 sm:mx-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 animate-jump-float">
+                  <span className="inline-block mx-2 sm:mx-4 text-white animate-jump-float">
                     Technologies
                   </span>
                 </h1>
 
                 {/* Subtitle with jumping animation */}
-                <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-300 max-w-4xl mx-auto font-medium animate-jump">
+                <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-700 max-w-4xl mx-auto font-medium animate-jump">
                   Transforming Ideas Into Digital Reality
                 </p>
 
                 {/* Tagline with floating animation */}
-                <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl mx-auto animate-float-delayed">
+                <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto animate-float-delayed">
                   We design and build secure, scalable software and cloud platforms
                 </p>
 
@@ -118,33 +113,30 @@ function Home() {
                 backgroundImage: `url(${bannerBg2})`,
               }}
             >
-              {/* Dark overlay for better text readability */}
-              <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/70 via-purple-900/60 to-blue-900/70"></div>
+              {/* Light overlay for better text readability */}
+              <div className="absolute inset-0 bg-white/40"></div>
             </div>
 
-            <div className="absolute inset-0 overflow-hidden z-0">
-              <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl animate-float"></div>
-              <div className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-float-delayed"></div>
-            </div>
+            {/* Animated background elements removed for neutral theme */}
 
             <div className="relative z-10 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto w-full text-center">
               <div className="space-y-6 sm:space-y-8 md:space-y-10">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 sm:mb-8 bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 sm:mb-8 text-gray-800 drop-shadow-lg">
                   Innovation at Scale
                 </h2>
-                <p className="text-lg sm:text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
+                <p className="text-lg sm:text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto">
                   Building the future of technology, one solution at a time
                 </p>
                 <div className="flex justify-center gap-4 mt-8">
                   <Link
                     to="/services"
-                    className="px-6 py-3 text-white rounded-lg bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 transition-all duration-200 shadow-lg"
+                    className="px-6 py-3 text-white rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 transition-all duration-200 shadow-lg"
                   >
                     Our Services
                   </Link>
                   <Link
                     to="/contact"
-                    className="px-6 py-3 text-white rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 transition-all duration-200 shadow-lg"
+                    className="px-6 py-3 text-white rounded-lg bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 transition-all duration-200 shadow-lg"
                   >
                     Get in Touch
                   </Link>
@@ -163,32 +155,29 @@ function Home() {
                 // Replace the URL above with your own image path
               }}
             >
-              {/* Dark overlay for better text readability */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-900/70 via-indigo-900/60 to-purple-900/70"></div>
+              {/* Light overlay for better text readability */}
+              <div className="absolute inset-0 bg-white/40"></div>
             </div>
 
-            <div className="absolute inset-0 overflow-hidden z-0">
-              <div className="absolute top-1/2 left-1/3 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-rotate-slow"></div>
-              <div className="absolute bottom-1/4 right-1/3 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-float"></div>
-            </div>
+            {/* Animated background elements removed for neutral theme */}
 
             <div className="relative z-10 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto w-full text-center">
               <div className="space-y-6 sm:space-y-8">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-400">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-8 text-gray-800 drop-shadow-lg">
                   Excellence in Every Project
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-                  <div className="p-6 bg-gray-900/60 backdrop-blur-md rounded-xl border border-gray-700/50">
-                    <h3 className="text-xl font-bold text-white mb-3">Engineering</h3>
-                    <p className="text-gray-300">Custom solutions built with modern technology</p>
+                  <div className="p-6 bg-white/70 backdrop-blur-md rounded-xl border border-blue-200/50 shadow-lg">
+                    <h3 className="text-xl font-bold text-gray-800 mb-3">Engineering</h3>
+                    <p className="text-gray-700">Custom solutions built with modern technology</p>
                   </div>
-                  <div className="p-6 bg-gray-900/60 backdrop-blur-md rounded-xl border border-gray-700/50">
-                    <h3 className="text-xl font-bold text-white mb-3">Cloud & Infra</h3>
-                    <p className="text-gray-300">Scalable infrastructure for your business</p>
+                  <div className="p-6 bg-white/70 backdrop-blur-md rounded-xl border border-blue-200/50 shadow-lg">
+                    <h3 className="text-xl font-bold text-gray-800 mb-3">Cloud & Infra</h3>
+                    <p className="text-gray-700">Scalable infrastructure for your business</p>
                   </div>
-                  <div className="p-6 bg-gray-900/60 backdrop-blur-md rounded-xl border border-gray-700/50">
-                    <h3 className="text-xl font-bold text-white mb-3">Security</h3>
-                    <p className="text-gray-300">Protecting what matters most</p>
+                  <div className="p-6 bg-white/70 backdrop-blur-md rounded-xl border border-blue-200/50 shadow-lg">
+                    <h3 className="text-xl font-bold text-gray-800 mb-3">Security</h3>
+                    <p className="text-gray-700">Protecting what matters most</p>
                   </div>
                 </div>
               </div>
