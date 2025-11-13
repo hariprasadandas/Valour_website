@@ -148,12 +148,12 @@ function Home() {
                 </h1>
 
                 {/* Subtitle with jumping animation */}
-                <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-700 max-w-4xl mx-auto font-medium animate-jump">
+                <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-100 max-w-4xl mx-auto font-medium animate-jump">
                   Transforming Ideas Into Digital Reality
                 </p>
 
                 {/* Tagline with floating animation */}
-                <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto animate-float-delayed">
+                <p className="text-base sm:text-lg md:text-xl text-gray-200 max-w-3xl mx-auto animate-float-delayed">
                   We design and build secure, scalable software and cloud platforms
                 </p>
 
@@ -442,9 +442,9 @@ function Home() {
         </div>
       </section>
       
-      <Services />
+      {/* <Services /> */}
       <Careers />
-      <Contact />
+      {/* <Contact /> */}
     </main>
   )
 }
