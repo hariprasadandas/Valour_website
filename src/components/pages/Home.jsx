@@ -289,7 +289,6 @@ function Home() {
 
 
 
-      <About />
       
       <section className="relative py-12 md:py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center mb-8">
@@ -330,8 +329,7 @@ function Home() {
           </div>
         </div>
       </section>
-      {/* <Team />
-      <Clients /> */}
+      
       
 
       <section className="relative py-14 sm:py-16">
@@ -442,9 +440,6 @@ function Home() {
         </div>
       </section>
       
-      {/* <Services /> */}
-      <Careers />
-      {/* <Contact /> */}
     </main>
   )
 }
