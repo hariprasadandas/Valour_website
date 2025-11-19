@@ -7,7 +7,7 @@ function Contact() {
     const email = document.getElementById('email')?.value || ''
     const name = document.getElementById('name')?.value || ''
 
-    window.location.href = `mailto:contact@valourtech.com?subject=Website enquiry from ${name}&body=${encodeURIComponent(message)}\n\nReply to: ${email}`
+    window.location.href = `mailto:info@valourtechnologies.com?subject=Website enquiry from ${name}&body=${encodeURIComponent(message)}\n\nReply to: ${email}`
   }
 
   return (
@@ -36,7 +36,7 @@ function Contact() {
               <p>
                 Careers:{' '}
                 <a href="mailto:careers@valourtechnologies.com" className="text-blue-600 hover:text-blue-700 transition-colors">
-                  careers@valourtechnologies.com
+                  hr@valourtechnologies.com
                 </a>
               </p>
               <p>Phone: +91 9515272424</p>
