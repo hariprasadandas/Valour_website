@@ -246,8 +246,8 @@ function Home() {
           </div>
         </div>
         </div>
-        {/* Slide Indicators - Positioned outside scrollable container to show on all slides */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-[100] flex space-x-3 pointer-events-auto">
+        {/* Slide Indicators - Only visible within banner slides */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-[10] flex space-x-3 pointer-events-auto">
           {[0, 1, 2].map((index) => (
             <button
               key={index}
