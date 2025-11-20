@@ -149,7 +149,7 @@ function Home() {
             <div className="relative z-10 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto w-full text-center">
               <div className="space-y-6 sm:space-y-8 md:space-y-10">
                 {/* Main heading with floating and rotating effect */}
-                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold mb-6 sm:mb-8">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold mb-6 sm:mb-8 leading-tight">
                   <span className="inline-block bg-gradient-to-r from-blue-600 to-sky-600 bg-clip-text text-transparent animate-float-rotate">
                     Valour
                   </span>
