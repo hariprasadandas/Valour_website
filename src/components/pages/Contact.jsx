@@ -1,4 +1,5 @@
 import React from 'react'
+import OfficesSection from './OfficesSection';
 
 function Contact() {
   const handleSubmit = (e) => {
@@ -96,6 +97,7 @@ function Contact() {
             </form>
           </div>
         </div>
+        <OfficesSection />
       </div>
     </main>
   )

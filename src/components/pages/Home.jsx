@@ -11,6 +11,7 @@ import dashboardPic1 from '../../assets/dashboard-pic1.png'
 import dashboardPic2 from '../../assets/dashboard-pic2.png'
 import dashboardPic3 from '../../assets/dashboard-pic3.png'
 import dashboardPic4 from '../../assets/dashboard-pic4.png'
+import OfficesSection from './OfficesSection';
 
 const CERTIFIED_PARTNERS = [
   {
@@ -459,6 +460,7 @@ function Home() {
           </div>
         </div>
       </section>
+      <OfficesSection />
       
     </main>
   )
