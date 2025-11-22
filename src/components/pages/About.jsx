@@ -54,7 +54,7 @@ function About() {
               info@valourtechnologies.com
             </a>{' '}
             or{' '}
-            <Link to="/contact" className="inline-block mt-4 px-6 py-3 text-white rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 transition-all duration-200 shadow-lg">
+            <Link to="/contact" state={{ openForm: true }} className="inline-block mt-4 px-6 py-3 text-white rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 transition-all duration-200 shadow-lg">
               send us a message
             </Link>
           </p>

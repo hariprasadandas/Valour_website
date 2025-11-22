@@ -1,7 +1,19 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
+import { useLocation } from 'react-router-dom'
 import OfficesSection from './OfficesSection';
 
 function Contact() {
+  const location = useLocation()
+  const nameRef = useRef(null)
+
+  useEffect(() => {
+    if (location?.state?.openForm) {
+      // scroll the form container into view and focus the name input
+      nameRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      nameRef.current?.focus()
+    }
+  }, [location])
+
   const handleSubmit = (e) => {
     e.preventDefault()
     const message = document.getElementById('message')?.value || ''
@@ -58,6 +70,7 @@ function Contact() {
                 </label>
                 <input
                   id="name"
+                  ref={nameRef}
                   type="text"
                   placeholder="Full name"
                   className="w-full p-3 bg-white/80 border border-blue-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-400 transition-all text-gray-800 placeholder-gray-400"
