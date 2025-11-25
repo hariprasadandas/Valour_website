@@ -45,7 +45,7 @@ function Footer() {
 							</a>
 						</div>
 						<p className="text-sm">© {new Date().getFullYear()} Valour Technologies</p>
-						<p className="text-sm text-pink-300 mt-2">Made with ❤️ by Hari</p>
+						{/* <p className="text-sm text-pink-300 mt-2">Made with ❤️ by Hari</p> */}
 					</div>
 				</div>
 			</div>

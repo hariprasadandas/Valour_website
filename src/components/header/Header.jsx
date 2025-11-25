@@ -6,6 +6,7 @@ function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false)
   const servicesDropdownRef = useRef(null)
+  const mobileServicesRef = useRef(null)
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false)
   const toggleMobileMenu = () => setIsMobileMenuOpen((v) => !v)
@@ -23,7 +24,10 @@ function Header() {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (servicesDropdownRef.current && !servicesDropdownRef.current.contains(event.target)) {
+      const clickedInsideDesktop = servicesDropdownRef.current?.contains(event.target)
+      const clickedInsideMobile = mobileServicesRef.current?.contains(event.target)
+      // if the click is outside both desktop and mobile services areas, close the dropdown
+      if (!clickedInsideDesktop && !clickedInsideMobile) {
         setIsServicesDropdownOpen(false)
       }
     }
@@ -129,7 +133,7 @@ function Header() {
       {/* Backdrop */}
       {isMobileMenuOpen && (
         <div
-          className="fixed inset-0 bg-black/40 backdrop-blur-[1px] md:hidden z-[55]"
+          className="fixed inset-0 bg-black/60 backdrop-blur-[1px] md:hidden z-[55]"
           onClick={closeMobileMenu}
         />
       )}
@@ -137,11 +141,11 @@ function Header() {
       {/* Mobile side drawer (always mounted for smooth animation) */}
       <aside
         className={
-          `fixed right-0 top-0 h-full w-64 max-w-[80vw] md:hidden shadow-2xl transform transition-transform duration-200 ease-out z-[60] ${
+          `fixed right-0 top-0 h-full w-64 max-w-[80vw] md:hidden shadow-2xl transform transition-transform duration-200 ease-out z-[60] bg-[#071224] ${
             isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
           }`
         }
-        style={{background: '#0b2545', color: '#fff'}}
+        style={{ color: '#fff' }}
         role="dialog"
         aria-modal="true"
         aria-hidden={!isMobileMenuOpen}
@@ -163,10 +167,10 @@ function Header() {
             </svg>
           </button>
         </div>
-        <nav className="flex flex-col gap-1 p-4">
+        <nav className="flex flex-col gap-1 p-4 text-white bg-slate-900/95">
           <Link to="/" onClick={() => { closeMobileMenu(); window.scrollTo({ top: 0, behavior: 'smooth' }) }} className="px-3 py-2 rounded hover:bg-white/10">Home</Link>
           <Link to="/about" onClick={() => { closeMobileMenu(); window.scrollTo({ top: 0, behavior: 'smooth' }) }} className="px-3 py-2 rounded hover:bg-white/10">Who We Are</Link>
-          <div className="space-y-1">
+          <div className="space-y-1" ref={mobileServicesRef}>
             <button
               onClick={toggleServicesDropdown}
               className="w-full text-left px-3 py-2 rounded hover:bg-white/10 flex items-center justify-between"
