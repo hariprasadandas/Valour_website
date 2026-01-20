@@ -66,6 +66,7 @@ function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const marqueeClients = useMemo(() => [...CLIENTS_DATA, ...CLIENTS_DATA], []);
   const marqueeTrackRef = useRef(null);
+  const isHoveringMarqueeRef = useRef(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -96,11 +97,13 @@ function Home() {
     };
 
     const step = () => {
-      position -= speed;
-      if (segmentWidth > 0 && -position >= segmentWidth) {
-        position += segmentWidth;
+      if (!isHoveringMarqueeRef.current) {
+        position -= speed;
+        if (segmentWidth > 0 && -position >= segmentWidth) {
+          position += segmentWidth;
+        }
+        track.style.transform = `translateX(${position}px)`;
       }
-      track.style.transform = `translateX(${position}px)`;
       frameId = requestAnimationFrame(step);
     };
 
@@ -326,6 +329,8 @@ function Home() {
           <div
             ref={marqueeTrackRef}
             className="flex w-max gap-12 px-12 py-2 will-change-transform"
+            onMouseEnter={() => { isHoveringMarqueeRef.current = true; }}
+            onMouseLeave={() => { isHoveringMarqueeRef.current = false; }}
           >
             {marqueeClients.map((client, index) => (
               <div
