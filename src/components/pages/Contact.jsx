@@ -55,8 +55,10 @@ function Contact() {
               <p>Phone: +91 9515272424</p>
               <p>
                 Address:<br />
-                123 Valour Way, Suite 100<br />
-                Anytown, USA
+                Valour Technologies Pvt Ltd, <br />
+                No.502,Vcollab,Capital Park, <br />
+                Image Gardens Road,Madhapur, <br />
+                Hyderabad, Telangana - 500081.
               </p>
             </div>
           </div>

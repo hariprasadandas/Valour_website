@@ -1,6 +1,13 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Footer() {
+	const handleQuickLinkNavigation = () => {
+		requestAnimationFrame(() => {
+			window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+		})
+	}
+
 	return (
 		<footer className="w-full bg-gradient-to-br from-[#0b2545] via-[#1a1446] to-[#0a0f1f] text-white mt-8 border-t border-white/10">
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-12 md:py-16">
@@ -10,18 +17,19 @@ function Footer() {
 						<p className="text-sm text-white/80 mb-4">Innovate. Secure. Scale.</p>
 						<p className="text-sm mb-2 text-white/80">We design and build secure, scalable software and cloud platforms that help organizations accelerate digital transformation.</p>
 						<p className="text-sm mb-1 text-white/80">Email: <a href="mailto:info@valourtechnologies.com" className="text-blue-300 hover:text-blue-200 transition-colors">info@valourtechnologies.com</a></p>
-						<p className="text-sm text-white/80">Phone: +91 9515272424</p>
+						<p className="text-sm text-white/80">IND Phone: +91 9515272424</p>
+						<p className="text-sm text-white/80">UK Phone: +44 7376 472095</p>
 					</div>
 
 					<div className="w-full">
 						<h4 className="text-lg font-semibold mb-3">Quick Links</h4>
 						<ul className="space-y-2 text-sm">
-							<li><a href="/about" className="text-white/80 hover:text-blue-200 transition-colors">About Us</a></li>
-							<li><a href="/services" className="text-white/80 hover:text-blue-200 transition-colors">Services</a></li>
-							<li><a href="/our-team" className="text-white/80 hover:text-blue-200 transition-colors">Leadership Team</a></li>
-							<li><a href="/our-clients" className="text-white/80 hover:text-blue-200 transition-colors">Our Clients</a></li>
-							<li><a href="/careers" className="text-white/80 hover:text-blue-200 transition-colors">Careers</a></li>
-							<li><a href="/contact" className="text-white/80 hover:text-blue-200 transition-colors">Contact Us</a></li>
+							<li><Link to="/about" onClick={handleQuickLinkNavigation} className="text-white/80 hover:text-blue-200 transition-colors">About Us</Link></li>
+							<li><Link to="/services" onClick={handleQuickLinkNavigation} className="text-white/80 hover:text-blue-200 transition-colors">Services</Link></li>
+							<li><Link to="/our-team" onClick={handleQuickLinkNavigation} className="text-white/80 hover:text-blue-200 transition-colors">Leadership Team</Link></li>
+							<li><Link to="/our-clients" onClick={handleQuickLinkNavigation} className="text-white/80 hover:text-blue-200 transition-colors">Our Clients</Link></li>
+							<li><Link to="/careers" onClick={handleQuickLinkNavigation} className="text-white/80 hover:text-blue-200 transition-colors">Careers</Link></li>
+							<li><Link to="/contact" onClick={handleQuickLinkNavigation} className="text-white/80 hover:text-blue-200 transition-colors">Contact Us</Link></li>
 						</ul>
 					</div>
 

@@ -11,6 +11,9 @@ import dashboardPic1 from '../../assets/dashboard-pic1.png'
 import dashboardPic2 from '../../assets/dashboard-pic2.png'
 import dashboardPic3 from '../../assets/dashboard-pic3.png'
 import dashboardPic4 from '../../assets/dashboard-pic4.png'
+import bannerDiscuss from '../../assets/Banner-discuss-2mem.jpeg'
+import bannerTyping from '../../assets/Banner-lap-typing.jpeg'
+import bannerWebDev from '../../assets/Banner-web-dev.jpeg'
 import OfficesSection from './OfficesSection';
 
 const CERTIFIED_PARTNERS = [
@@ -61,6 +64,30 @@ const IMPACT_STATS = [
   },
 ]
 
+const HERO_SLIDES = [
+  {
+    title: 'From Ideas to Launch in Weeks',
+    subtitle: 'Collaborative product squads that design, build, and ship with startup speed.',
+    ctaLabel: 'Start a Project',
+    ctaTo: '/contact',
+    image: bannerDiscuss,
+  },
+  {
+    title: 'Digital Workflows That Actually Flow',
+    subtitle: 'Automation-first engineering for platforms that stay clean, fast, and reliable.',
+    ctaLabel: 'Explore Services',
+    ctaTo: '/services',
+    image: bannerTyping,
+  },
+  {
+    title: 'Web Experiences Built for Growth',
+    subtitle: 'Performance-focused web solutions that convert visitors into loyal customers.',
+    ctaLabel: 'Meet Our Team',
+    ctaTo: '/our-team',
+    image: bannerWebDev,
+  },
+]
+
 function Home() {
   const containerRef = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -73,7 +100,7 @@ function Home() {
       if (containerRef.current) {
         const container = containerRef.current;
         const slideWidth = window.innerWidth;
-        const nextSlide = (currentSlide + 1) % 3;
+        const nextSlide = (currentSlide + 1) % HERO_SLIDES.length;
         setCurrentSlide(nextSlide);
 
         // Use scrollLeft for immediate jump to avoid reverse scrolling
@@ -137,121 +164,47 @@ function Home() {
         <div ref={containerRef} className="relative w-full min-h-[70vh] overflow-x-auto overflow-y-hidden snap-x snap-mandatory" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
           {/* Horizontal scrollable container */}
           <div className="flex h-[70vh] w-max scroll-smooth">
-          {/* Slide 1 - Main Banner */}
-          <div className={`relative w-screen h-[70vh] flex-shrink-0 flex items-center justify-center snap-center overflow-hidden transition-all duration-1000 ease-in-out ${currentSlide === 0 ? 'opacity-100 scale-100' : 'opacity-80 scale-95'}`}>
-            {/* Background Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 via-sky-300/30 to-blue-500/20">
-              {/* Pattern overlay */}
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.1),transparent_50%)]"></div>
-              {/* Light overlay for better text readability */}
-              <div className="absolute inset-0 bg-white/60"></div>
-            </div>
+            {HERO_SLIDES.map((slide, index) => (
+              <div
+                key={slide.title}
+                className={`relative w-screen h-[70vh] flex-shrink-0 flex items-center justify-center snap-center overflow-hidden transition-all duration-1000 ease-in-out ${currentSlide === index ? 'opacity-100 scale-100' : 'opacity-80 scale-95'}`}
+              >
+                <img
+                  src={slide.image}
+                  alt={slide.title}
+                  className="absolute inset-0 h-full w-full object-cover"
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/45 to-black/55" />
 
-            {/* Animated background elements removed for neutral theme */}
-
-            <div className="relative z-10 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto w-full text-center">
-              <div className="space-y-6 sm:space-y-8 md:space-y-10">
-                {/* Main heading with floating and rotating effect */}
-                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold mb-6 sm:mb-8 leading-tight">
-                  <span className="inline-block bg-gradient-to-r from-blue-600 to-sky-600 bg-clip-text text-transparent animate-float-rotate">
-                    Valour
-                  </span>
-                  <span className="inline-block mx-2 sm:mx-4 bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent animate-jump-float">
-                    Technologies
-                  </span>
-                </h1>
-
-                {/* Subtitle with jumping animation */}
-                <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-800 max-w-4xl mx-auto font-medium animate-jump">
-                  Transforming Ideas Into Digital Reality
-                </p>
-
-                {/* Tagline with floating animation */}
-                <p className="text-base sm:text-lg md:text-xl text-gray-700 max-w-3xl mx-auto animate-float-delayed">
-                  We design and build secure, scalable software and cloud platforms
-                </p>
-
-              </div>
-            </div>
-          </div>
-
-          {/* Slide 2 - Additional Content */}
-          <div className={`relative w-screen h-[70vh] flex-shrink-0 flex items-center justify-center snap-center overflow-hidden transition-all duration-1000 ease-in-out ${currentSlide === 1 ? 'opacity-100 scale-100' : 'opacity-80 scale-95'}`}>
-            {/* Background Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-br from-green-400/20 via-emerald-300/30 to-green-500/20">
-              {/* Pattern overlay */}
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(34,197,94,0.1),transparent_50%)]"></div>
-              {/* Light overlay for better text readability */}
-              <div className="absolute inset-0 bg-white/50"></div>
-            </div>
-
-            {/* Animated background elements removed for neutral theme */}
-
-            <div className="relative z-10 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto w-full text-center">
-              <div className="space-y-6 sm:space-y-8 md:space-y-10">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 sm:mb-8 text-gray-800 drop-shadow-lg">
-                  Innovation at Scale
-                </h2>
-                <p className="text-lg sm:text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto">
-                  Building the future of technology, one solution at a time
-                </p>
-                <div className="flex justify-center gap-4 mt-8">
-                  <Link
-                    to="/services"
-                    className="px-6 py-3 text-white rounded-lg bg-gradient-to-r from-blue-500 to-sky-500 hover:from-blue-600 hover:to-sky-600 transition-all duration-200 shadow-lg"
-                  >
-                    Our Services
-                  </Link>
-                  <Link
-                    to="/contact"
-                    className="px-6 py-3 text-white rounded-lg bg-gradient-to-r from-orange-400 to-orange-500 hover:from-orange-500 hover:to-orange-600 transition-all duration-200 shadow-lg"
-                  >
-                    Get in Touch
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Slide 3 - Services Preview */}
-          <div className={`relative w-screen h-[70vh] flex-shrink-0 flex items-center justify-center snap-center overflow-hidden transition-all duration-1000 ease-in-out ${currentSlide === 2 ? 'opacity-100 scale-100' : 'opacity-80 scale-95'}`}>
-            {/* Background Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-br from-orange-400/20 via-amber-300/30 to-orange-500/20">
-              {/* Pattern overlay */}
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(251,146,60,0.1),transparent_50%)]"></div>
-              {/* Light overlay for better text readability */}
-              <div className="absolute inset-0 bg-white/50"></div>
-            </div>
-
-            {/* Animated background elements removed for neutral theme */}
-
-            <div className="relative z-10 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto w-full text-center">
-              <div className="space-y-6 sm:space-y-8">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-8 text-gray-800 drop-shadow-lg">
-                  Excellence in Every Project
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-                  <div className="p-6 bg-gradient-to-br from-blue-50 to-sky-50 backdrop-blur-md rounded-xl border border-blue-300/50 shadow-lg">
-                    <h3 className="text-xl font-bold text-gray-800 mb-3">Engineering</h3>
-                    <p className="text-gray-700">Custom solutions built with modern technology</p>
-                  </div>
-                  <div className="p-6 bg-gradient-to-br from-green-50 to-emerald-50 backdrop-blur-md rounded-xl border border-green-300/50 shadow-lg">
-                    <h3 className="text-xl font-bold text-gray-800 mb-3">Cloud & Infra</h3>
-                    <p className="text-gray-700">Scalable infrastructure for your business</p>
-                  </div>
-                  <div className="p-6 bg-gradient-to-br from-orange-50 to-amber-50 backdrop-blur-md rounded-xl border border-orange-300/50 shadow-lg">
-                    <h3 className="text-xl font-bold text-gray-800 mb-3">Security</h3>
-                    <p className="text-gray-700">Protecting what matters most</p>
+                <div className="relative z-10 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto w-full text-center">
+                  <div className="max-w-4xl mx-auto space-y-6">
+                    <p className="inline-flex rounded-full border border-white/30 bg-white/10 px-4 py-2 text-xs sm:text-sm font-semibold uppercase tracking-[0.28em] text-white/90">
+                      Valour Technologies
+                    </p>
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-white drop-shadow-xl">
+                      {slide.title}
+                    </h1>
+                    <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-3xl mx-auto">
+                      {slide.subtitle}
+                    </p>
+                    <div className="pt-2">
+                      <Link
+                        to={slide.ctaTo}
+                        className="inline-flex items-center rounded-lg border border-white/35 bg-white/15 px-7 py-3 text-sm sm:text-base font-semibold text-white backdrop-blur-md transition-all duration-300 hover:bg-white hover:text-gray-900"
+                      >
+                        {slide.ctaLabel}
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+            ))}
         </div>
         </div>
         {/* Slide Indicators - Only visible within banner slides */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-[10] flex space-x-3 pointer-events-auto">
-          {[0, 1, 2].map((index) => (
+        {/* <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-[10] flex space-x-3 pointer-events-auto">
+          {HERO_SLIDES.map((_, index) => (
             <button
               key={index}
               onClick={() => {
@@ -268,7 +221,7 @@ function Home() {
               }`}
             />
           ))}
-        </div>
+        </div> */}
       </div>
 
       <section className="relative py-16 sm:py-20">
