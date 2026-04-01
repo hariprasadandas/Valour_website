@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom'
 function Careers() {
   return (
     <main className="text-gray-800 min-h-screen bg-gradient-to-br from-blue-50 via-green-50/40 via-white to-orange-50/30">
-      <div className="px-4 sm:px-6 md:px-8 max-w-7xl mx-auto py-12 space-y-12">
+      <div className="px-6 sm:px-10 md:px-12 lg:px-14 max-w-7xl mx-auto pt-2 sm:pt-4 md:pt-6 pb-12 space-y-12">
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 leading-tight">
           Careers at Valour Technologies
         </h1>
 
         <div className="bg-white/75 backdrop-blur-md rounded-xl border border-blue-200/50 shadow-lg px-6 sm:px-10 py-10">
-          <p className="text-lg sm:text-xl text-gray-700 max-w-4xl mx-auto text-center">
+          <p className="text-lg sm:text-xl text-gray-700 leading-relaxed">
             We're a growing team of engineers, architects and product professionals solving
             cloud, security and data problems. We hire for curiosity, ownership and collaboration.
           </p>
