@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import logo from '../../assets/Logo.webp'
+import logo from '../../assets/Logo.png'
 
 function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -38,7 +38,7 @@ function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 sm:px-8 py-4 w-full max-w-[100vw] backdrop-blur-md shadow-lg" style={{background: '#0b2545', color: '#fff'}}>
       <div className="flex items-center gap-4">
-        <img src={logo} alt="Valour Logo" className="h-10 w-10 object-contain" />
+        <img src={logo} alt="Valour Logo" className="h-14 w-14 object-contain" />
         <div className="flex flex-col">
           <div className="font-bold text-xl leading-tight" style={{color: '#fff'}}>Valour</div>
           <div className="font-bold text-lg leading-tight" style={{color: '#fff'}}>Technologies</div>
@@ -153,7 +153,7 @@ function Header() {
       >
         <div className="flex items-center justify-between px-4 py-4 border-b border-white/10">
           <div className="flex items-center gap-3">
-            <img src={logo} alt="Valour Logo" className="h-8 w-8 object-contain" />
+            <img src={logo} alt="Valour Logo" className="h-11 w-11 object-contain" />
             <span className="font-semibold">Valour Technologies</span>
           </div>
           <button
