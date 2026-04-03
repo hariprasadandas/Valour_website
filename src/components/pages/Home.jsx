@@ -89,6 +89,7 @@ const HERO_SLIDES = [
 ]
 
 function Home() {
+  const containerRef = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const marqueeClients = useMemo(() => [...CLIENTS_DATA, ...CLIENTS_DATA], []);
   const marqueeTrackRef = useRef(null);
@@ -96,11 +97,19 @@ function Home() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
-    }, 3500);
+      if (containerRef.current) {
+        const container = containerRef.current;
+        const slideWidth = window.innerWidth;
+        const nextSlide = (currentSlide + 1) % HERO_SLIDES.length;
+        setCurrentSlide(nextSlide);
+
+        // Use scrollLeft for immediate jump to avoid reverse scrolling
+        container.scrollLeft = nextSlide * slideWidth;
+      }
+    }, 2000); // Auto-scroll every 4 seconds
 
     return () => clearInterval(interval);
-  }, []);
+  }, [currentSlide]);
   useEffect(() => {
     const track = marqueeTrackRef.current;
     if (!track) return;
@@ -150,63 +159,69 @@ function Home() {
 
   return (
     <main className="text-gray-800 min-h-screen bg-gradient-to-br from-blue-50 via-green-50/40 via-white to-orange-50/30">
-      {/* Banner Section with split content and image */}
-      <section className="relative w-full pt-2 sm:pt-4 md:pt-6 pb-10 sm:pb-14 md:pb-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid items-center gap-10 lg:grid-cols-2">
-            <div className="space-y-6 lg:pr-8">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight text-gray-900">
-                Innovative IT Solutions for Modern Business
-              </h1>
-              <p className="text-sm sm:text-base md:text-lg leading-relaxed text-gray-700">
-                We provide advanced IT technology solutions designed to help businesses grow, innovate, and succeed in the digital world. Our expertise includes Mobile Application Development, Salesforce Solutions, and Web Development, delivering scalable and secure solutions tailored to your business needs.
-              </p>
-              <p className="text-sm sm:text-base md:text-lg leading-relaxed text-gray-700">
-                With a team of skilled professionals and industry expertise, we help organizations transform their ideas into powerful digital products that enhance productivity, improve customer engagement, and drive business growth.
-              </p>
-              <div className="flex flex-wrap items-center gap-3 pt-1">
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center rounded-lg bg-blue-600 px-6 py-3 text-sm sm:text-base font-semibold text-white shadow-md transition-colors duration-300 hover:bg-blue-700"
-                >
-                  Start a Project
-                </Link>
-                <Link
-                  to="/services"
-                  className="inline-flex items-center rounded-lg border border-blue-200 bg-white px-6 py-3 text-sm sm:text-base font-semibold text-blue-700 transition-colors duration-300 hover:bg-blue-50"
-                >
-                  Explore Services
-                </Link>
-              </div>
-            </div>
+      {/* Banner Section with Auto Scrolling */}
+      <div className="relative w-full min-h-[75vh] lg:h-screen">
+        <div ref={containerRef} className="relative w-full min-h-[75vh] lg:h-screen overflow-x-auto overflow-y-hidden snap-x snap-mandatory" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+          {/* Horizontal scrollable container */}
+          <div className="flex h-[75vh] lg:h-screen w-max scroll-smooth">
+            {HERO_SLIDES.map((slide, index) => (
+              <div
+                key={slide.title}
+                className={`relative w-screen h-[75vh] lg:h-screen flex-shrink-0 flex items-center justify-center snap-center overflow-hidden transition-all duration-1000 ease-in-out ${currentSlide === index ? 'opacity-100 scale-100' : 'opacity-80 scale-95'}`}
+              >
+                <img
+                  src={slide.image}
+                  alt={slide.title}
+                  className="absolute inset-0 h-full w-full object-cover lg:object-contain bg-black"
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/45 to-black/55" />
 
-            <div className="relative">
-              <div className="relative h-[280px] sm:h-[360px] md:h-[430px] w-full overflow-hidden rounded-3xl border border-white/70 bg-white/70 p-2 shadow-[0_24px_55px_rgba(15,23,42,0.16)] backdrop-blur-md">
-                {HERO_SLIDES.map((slide, index) => (
-                  <img
-                    key={slide.title}
-                    src={slide.image}
-                    alt={slide.title}
-                    className={`absolute inset-2 h-[calc(100%-1rem)] w-[calc(100%-1rem)] rounded-2xl object-cover transition-opacity duration-700 ${currentSlide === index ? 'opacity-100' : 'opacity-0'}`}
-                    loading={index === 0 ? 'eager' : 'lazy'}
-                  />
-                ))}
-
-                <div className="absolute bottom-5 left-1/2 z-10 flex -translate-x-1/2 gap-2 rounded-full bg-black/35 px-3 py-2 backdrop-blur-sm">
-                  {HERO_SLIDES.map((_, index) => (
-                    <span
-                      key={index}
-                      className={`h-2 w-2 rounded-full transition-all duration-300 ${currentSlide === index ? 'bg-white scale-110' : 'bg-white/45'}`}
-                    />
-                  ))}
+                <div className="relative z-10 px-4 sm:px-6 md:px-8 lg:px-10 max-w-7xl mx-auto w-full">
+                  <div className="max-w-2xl space-y-6 text-left">
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-white drop-shadow-xl">
+                      {slide.title}
+                    </h1>
+                    <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-xl">
+                      {slide.subtitle}
+                    </p>
+                    <div className="pt-2">
+                      <Link
+                        to={slide.ctaTo}
+                        className="inline-flex items-center rounded-lg border border-white/35 bg-white/15 px-7 py-3 text-sm sm:text-base font-semibold text-white backdrop-blur-md transition-all duration-300 hover:bg-white hover:text-gray-900"
+                      >
+                        {slide.ctaLabel}
+                      </Link>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
+            ))}
         </div>
-      </section>
+        </div>
+        {/* Slide Indicators - Only visible within banner slides */}
+        {/* <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-[10] flex space-x-3 pointer-events-auto">
+          {HERO_SLIDES.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => {
+                setCurrentSlide(index);
+                containerRef.current?.scrollTo({
+                  left: index * window.innerWidth,
+                  behavior: 'smooth'
+                });
+              }}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                currentSlide === index
+                  ? 'bg-blue-500 scale-125 shadow-lg ring-2 ring-blue-300'
+                  : 'bg-blue-300/70 hover:bg-blue-400/90 ring-1 ring-blue-200/50'
+              }`}
+            />
+          ))}
+        </div> */}
+      </div>
 
-      <section className="relative py-10 sm:py-12 md:py-14">
+      <section className="relative py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
             <p className="text-xs tracking-[0.4em] uppercase text-blue-500/70 mb-3">
@@ -249,7 +264,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="relative py-8 sm:py-10 md:py-12">
+      <section className="relative py-12 md:py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center mb-8">
           <p className="text-xs tracking-[0.35em] uppercase text-blue-500/70 mb-3">
             Our Clients
@@ -293,7 +308,7 @@ function Home() {
       
       
 
-      <section className="relative py-10 sm:py-12 md:py-14">
+      <section className="relative py-14 sm:py-16">
         <div className="absolute -top-10 left-1/2 h-40 w-40 -translate-x-1/2 rounded-full bg-blue-300/30 blur-3xl animate-pulse" />
         <div className="absolute inset-x-12 top-1/2 -translate-y-1/2 rounded-3xl border border-blue-200/30 bg-gradient-to-b from-green-100/20 via-blue-100/20 to-orange-100/20 blur-2xl opacity-60 pointer-events-none" />
         <div className="max-w-6xl mx-auto px-4 sm:px-6 relative">
