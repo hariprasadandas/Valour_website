@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import logo from '../../assets/Logo.png'
+import logo from '../../assets/Logos/Logo.png'
 
 function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -48,7 +48,6 @@ function Header() {
       {/* Desktop navigation */}
       <nav className="hidden md:flex gap-5">
         <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-white px-2 py-1 rounded transition-all duration-200 hover:bg-white/10 hover:underline">Home</Link>
-        <Link to="/about" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-white px-2 py-1 rounded transition-all duration-200 hover:bg-white/10 hover:underline">Who We Are</Link>
         <div
           className="relative"
           ref={servicesDropdownRef}
@@ -110,8 +109,6 @@ function Header() {
           )}
         </div>
         <Link to="/our-team" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-white px-2 py-1 rounded transition-all duration-200 hover:bg-white/10 hover:underline">Leadership Team</Link>
-        <Link to="/our-clients" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-white px-2 py-1 rounded transition-all duration-200 hover:bg-white/10 hover:underline">Our Clients</Link>
-        <Link to="/careers" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-white px-2 py-1 rounded transition-all duration-200 hover:bg-white/10 hover:underline">Careers</Link>
         <Link to="/contact" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-white px-2 py-1 rounded transition-all duration-200 hover:bg-white/10 hover:underline">Contact Us</Link>
       </nav>
 
@@ -169,7 +166,6 @@ function Header() {
         </div>
         <nav className="flex flex-col gap-1 p-4 text-white bg-slate-900/95">
           <Link to="/" onClick={() => { closeMobileMenu(); window.scrollTo({ top: 0, behavior: 'smooth' }) }} className="px-3 py-2 rounded hover:bg-white/10">Home</Link>
-          <Link to="/about" onClick={() => { closeMobileMenu(); window.scrollTo({ top: 0, behavior: 'smooth' }) }} className="px-3 py-2 rounded hover:bg-white/10">Who We Are</Link>
           <div className="space-y-1" ref={mobileServicesRef}>
             <button
               onClick={toggleServicesDropdown}
@@ -205,8 +201,6 @@ function Header() {
             )}
           </div>
           <Link to="/our-team" onClick={() => { closeMobileMenu(); window.scrollTo({ top: 0, behavior: 'smooth' }) }} className="px-3 py-2 rounded hover:bg-white/10">Leadership Team</Link>
-          <Link to="/our-clients" onClick={() => { closeMobileMenu(); window.scrollTo({ top: 0, behavior: 'smooth' }) }} className="px-3 py-2 rounded hover:bg-white/10">Our Clients</Link>
-          <Link to="/careers" onClick={() => { closeMobileMenu(); window.scrollTo({ top: 0, behavior: 'smooth' }) }} className="px-3 py-2 rounded hover:bg-white/10">Careers</Link>
           <Link to="/contact" onClick={() => { closeMobileMenu(); window.scrollTo({ top: 0, behavior: 'smooth' }) }} className="px-3 py-2 rounded hover:bg-white/10">Contact Us</Link>
         </nav>
       </aside>

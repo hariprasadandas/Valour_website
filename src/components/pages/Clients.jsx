@@ -1,35 +1,76 @@
 import React from 'react';
 
+import aadhyaTechLogo from '../../assets/clients/Aadhya_tech.jpeg';
+import gartGroupLogo from '../../assets/clients/Gart_group.jpeg';
+import newmarketHolidaysLogo from '../../assets/clients/Newmarket Holidays.png';
+import paradiseLogo from '../../assets/clients/Paradise.png';
+import relianceLogo from '../../assets/clients/Reliance.jpeg';
+import saasphireLogo from '../../assets/clients/Saasphire.png';
+import techCubeLogo from '../../assets/clients/Tech_Cube.jpeg';
+import thePalmsLogo from '../../assets/clients/The_Palms.jpeg';
+import volGroupLogo from '../../assets/clients/Vol Group.jpeg';
+import webfxmeLogo from '../../assets/clients/Webfxme.png';
+
 export const CLIENTS_DATA = [
   {
-    name: 'TechCorp',
-    description: 'Leading technology solutions provider.',
-    logo: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=160&h=80&fit=crop',
+    name: 'The Palms Hotel',
+    description: 'Hospitality and guest experience brand.',
+    logo: thePalmsLogo,
+    website: 'https://www.palmshotellondon.co.uk/',
   },
   {
-    name: 'Innovate Ltd',
-    description: 'Innovation-driven software company.',
-    logo: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=160&h=80&fit=crop',
+    name: 'Newmarket Holidays',
+    description: 'Travel and hospitality brand.',
+    logo: newmarketHolidaysLogo,
+    website: 'https://www.newmarketholidays.co.uk/',
   },
   {
-    name: 'SecureNet',
-    description: 'Cybersecurity experts.',
-    logo: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=160&h=80&fit=crop',
+    name: 'Reliance Nippon Life Insurance',
+    description: 'Insurance and financial services company.',
+    logo: relianceLogo,
+    website: 'https://www.indusindnipponlife.com/',
   },
   {
-    name: 'CloudMasters',
-    description: 'Cloud infrastructure specialists.',
-    logo: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=160&h=80&fit=crop',
+    name: 'Saasphire',
+    description: 'SaaS-focused product and platform company.',
+    logo: saasphireLogo,
+    website: 'https://www.saasphire.co.uk/',
   },
   {
-    name: 'DataFlow Inc',
-    description: 'Data analytics and processing.',
-    logo: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=160&h=80&fit=crop',
+    name: 'Paradise Biryani Pointe',
+    description: 'Food and restaurant chain.',
+    logo: paradiseLogo,
+    website: 'https://paradisebiryanipointe.co.uk/',
   },
   {
-    name: 'WebSolutions',
-    description: 'Web development and design.',
-    logo: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=160&h=80&fit=crop',
+    name: 'Tech Cube',
+    description: 'Security technology and sales solutions.',
+    logo: techCubeLogo,
+    website: 'https://www.techcube.co.uk/',
+  },
+  {
+    name: 'Aadhya Tech Limited',
+    description: 'AI and technology solutions provider.',
+    logo: aadhyaTechLogo,
+    website: 'https://aadhyatech.com/',
+  },
+  {
+    name: 'Gart Group Ltd',
+    description: 'Innovation-led digital transformation partner.',
+    logo: gartGroupLogo,
+    website: 'https://gartgroup.co.uk/',
+  },
+  {
+    name: 'Vol Group',
+    description: 'Technology-focused business group.',
+    logo: volGroupLogo,
+    website: 'https://volgroup.co.uk/',
+  },
+  {
+    name: 'Webfxme',
+    description: 'UX/UI and web design company.',
+    logo: webfxmeLogo,
+    website: 'https://webfx.me/',
   },
 ];
 
@@ -45,13 +86,19 @@ const Clients = () => {
         <div className="bg-white/70 backdrop-blur-md rounded-3xl border border-blue-200/50 shadow-xl px-6 sm:px-8 py-10">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {clients.map((client, index) => (
-              <div key={index} className="bg-white rounded-xl p-6 border border-blue-200/60 shadow-lg hover:shadow-xl transition-all duration-200 text-center">
+              <a
+                key={index}
+                href={client.website || undefined}
+                target={client.website ? '_blank' : undefined}
+                rel={client.website ? 'noopener noreferrer' : undefined}
+                className={`bg-white rounded-xl p-6 border border-blue-200/60 shadow-lg transition-all duration-200 text-center ${client.website ? 'hover:shadow-xl hover:-translate-y-1 cursor-pointer' : 'cursor-default'}`}
+              >
                 <div className="w-24 h-12 mx-auto mb-4 flex items-center justify-center rounded-lg bg-blue-50">
                   <img src={client.logo} alt={client.name} className="max-w-full max-h-full object-contain" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-800 mb-2">{client.name}</h3>
                 <p className="text-gray-600 text-sm">{client.description}</p>
-              </div>
+              </a>
           ))}
           </div>
         </div>

@@ -7,13 +7,14 @@ import Team from './Team'
 import { CLIENTS_DATA } from './Clients'
 import Careers from './Careers'
 import Contact from './Contact'
-import dashboardPic1 from '../../assets/dashboard-pic1.png'
-import dashboardPic2 from '../../assets/dashboard-pic2.png'
-import dashboardPic3 from '../../assets/dashboard-pic3.png'
-import dashboardPic4 from '../../assets/dashboard-pic4.png'
-import bannerDiscuss from '../../assets/Banner-discuss-2mem.jpeg'
-import bannerTyping from '../../assets/Banner-lap-typing.jpeg'
-import bannerWebDev from '../../assets/Banner-web-dev.jpeg'
+import dashboardPic1 from '../../assets/Images/dashboard-pic1.png'
+import dashboardPic2 from '../../assets/Images/dashboard-pic2.png'
+import dashboardPic3 from '../../assets/Images/dashboard-pic3.png'
+import dashboardPic4 from '../../assets/Images/dashboard-pic4.png'
+import aiBanner from '../../assets/Banners/AI-banner.jpeg'
+import bannerDiscuss from '../../assets/Banners/Banner-discuss-2mem.jpeg'
+import bannerTyping from '../../assets/Banners/Banner-lap-typing.jpeg'
+import bannerWebDev from '../../assets/Banners/Banner-web-dev.jpeg'
 import OfficesSection from './OfficesSection';
 
 const CERTIFIED_PARTNERS = [
@@ -71,6 +72,13 @@ const HERO_SLIDES = [
     ctaLabel: 'Start a Project',
     ctaTo: '/contact',
     image: bannerDiscuss,
+  },
+  {
+    title: 'We Deliver Intelligent AI Solutions That Drive Real Results',
+    subtitle: 'Automation-first engineering for platforms that stay clean, fast, and reliable.',
+    ctaLabel: 'Explore Services',
+    ctaTo: '/services',
+    image: aiBanner,
   },
   {
     title: 'Digital Workflows That Actually Flow',
@@ -221,49 +229,6 @@ function Home() {
         </div> */}
       </div>
 
-      <section className="relative py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12">
-            <p className="text-xs tracking-[0.4em] uppercase text-blue-500/70 mb-3">
-              Impact Snapshot
-            </p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900">
-              Meaningful Outcomes for Modern Organisations
-            </h2>
-            <p className="mt-4 text-sm sm:text-base text-gray-600 max-w-3xl mx-auto">
-              We partner with leadership teams to unlock measurable improvements across growth, experience,
-              and operational efficiency.
-            </p>
-          </div>
-          <div className="grid gap-6 md:gap-8 md:grid-cols-2 xl:grid-cols-4">
-            {IMPACT_STATS.map((stat) => (
-              <div
-                key={stat.title}
-                className="group relative flex flex-col items-center rounded-3xl border border-white/60 bg-white/80 px-6 py-10 text-center shadow-[0_18px_48px_rgba(15,23,42,0.08)] backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_25px_60px_rgba(15,23,42,0.12)]"
-              >
-                <div className={`mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${stat.iconAccent} shadow-inner`}>
-                  {stat.iconImage ? (
-                    <img src={stat.iconImage} alt={stat.title} className="h-10 w-10 object-contain" />
-                  ) : (
-                    stat.icon
-                  )}
-                </div>
-                <div className="text-4xl sm:text-5xl font-black text-gray-900 tracking-tight mb-3">
-                  {stat.value}
-                </div>
-                <p className="text-base font-semibold text-gray-800 leading-snug">
-                  {stat.title}
-                </p>
-                <p className="mt-4 text-sm text-gray-500">
-                  {stat.subtitle}
-                </p>
-                <div className="absolute inset-x-8 bottom-4 h-px bg-gradient-to-r from-transparent via-blue-200/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="relative py-12 md:py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center mb-8">
           <p className="text-xs tracking-[0.35em] uppercase text-blue-500/70 mb-3">
@@ -278,17 +243,20 @@ function Home() {
           <div className="pointer-events-none absolute inset-y-0 right-0 w-24 sm:w-36 bg-gradient-to-l from-white via-white/70 to-transparent" />
           <div
             ref={marqueeTrackRef}
-            className="flex w-max gap-12 px-12 py-2 will-change-transform"
+            className="flex w-max gap-10 px-10 py-2 will-change-transform"
             onMouseEnter={() => { isHoveringMarqueeRef.current = true; }}
             onMouseLeave={() => { isHoveringMarqueeRef.current = false; }}
           >
             {marqueeClients.map((client, index) => (
-              <div
+              <a
                 key={`${client.name}-${index}`}
-                className="flex min-w-[260px] flex-col items-center rounded-2xl border border-blue-200/50 bg-white/80 px-6 py-6 backdrop-blur-md shadow-lg"
+                href={client.website || undefined}
+                target={client.website ? '_blank' : undefined}
+                rel={client.website ? 'noopener noreferrer' : undefined}
+                className={`group flex min-w-[250px] flex-col items-center rounded-2xl border bg-white/90 px-5 py-5 backdrop-blur-md shadow-lg transition-all duration-300 ${client.website ? 'cursor-pointer border-blue-200/50 hover:-translate-y-1 hover:shadow-xl hover:border-blue-400/70 hover:ring-2 hover:ring-blue-200/70' : 'cursor-default border-blue-200/40'}`}
               >
                 <div
-                  className="flex h-20 w-32 items-center justify-center rounded-xl bg-white p-3 shadow-inner border border-gray-200"
+                  className="flex h-24 w-40 items-center justify-center rounded-xl bg-white p-3 shadow-inner border border-gray-200"
                 >
                   <img
                     src={client.logo}
@@ -297,9 +265,52 @@ function Home() {
                     loading="lazy"
                   />
                 </div>
-                <span className="mt-4 text-base sm:text-lg font-semibold text-gray-800 text-center tracking-wide">
+                <span className="mt-3 text-sm sm:text-base font-semibold text-gray-900 text-center leading-snug">
                   {client.name}
                 </span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative py-10 sm:py-12">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-8">
+            <p className="text-[11px] tracking-[0.35em] uppercase text-blue-500/70 mb-2">
+              Impact Snapshot
+            </p>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-900">
+              Meaningful Outcomes for Modern Organisations
+            </h2>
+            <p className="mt-3 text-sm text-gray-600 max-w-2xl mx-auto">
+              We partner with leadership teams to unlock measurable improvements across growth, experience,
+              and operational efficiency.
+            </p>
+          </div>
+          <div className="grid gap-4 md:gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {IMPACT_STATS.map((stat) => (
+              <div
+                key={stat.title}
+                className="group relative flex flex-col items-center rounded-2xl border border-white/60 bg-white/80 px-4 py-6 text-center shadow-[0_12px_32px_rgba(15,23,42,0.08)] backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(15,23,42,0.12)]"
+              >
+                <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${stat.iconAccent} shadow-inner`}>
+                  {stat.iconImage ? (
+                    <img src={stat.iconImage} alt={stat.title} className="h-8 w-8 object-contain" />
+                  ) : (
+                    stat.icon
+                  )}
+                </div>
+                <div className="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight mb-2">
+                  {stat.value}
+                </div>
+                <p className="text-sm sm:text-base font-semibold text-gray-800 leading-snug">
+                  {stat.title}
+                </p>
+                <p className="mt-2 text-xs sm:text-sm text-gray-500">
+                  {stat.subtitle}
+                </p>
+                <div className="absolute inset-x-6 bottom-3 h-px bg-gradient-to-r from-transparent via-blue-200/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
             ))}
           </div>

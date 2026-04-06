@@ -2,52 +2,44 @@ import React from 'react'
 
 const SERVICES_LIST = [
   {
-    title: 'Custom Software Development',
+    title: 'AI & Automation',
     description:
-      'Building secure, maintainable web and mobile applications with modern stacks and strong engineering practices.',
-    image:
-      'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80',
-    imageAlt: 'Software engineer writing code on multiple screens',
+      'Designing and deploying intelligent AI solutions, copilots, and workflow automation that reduce manual effort, improve speed, and increase operational accuracy.',
   },
   {
-    title: 'Cloud Architecture & Migration',
+    title: 'Cloud Computing & DevOps',
     description:
-      'Designing cloud-native platforms, migrations to AWS/Azure/GCP, and cost-efficient infrastructure.',
-    image:
-      'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80',
-    imageAlt: 'Cloud computing network visualization',
+      'Building scalable cloud infrastructure, setting up CI/CD pipelines, and implementing DevOps best practices to deliver faster, safer, and more reliable releases.',
   },
   {
-    title: 'DevOps & Site Reliability',
+    title: 'Data & Analytics',
     description:
-      'CI/CD, observability, incident response, and SRE practices to keep services healthy and deployable.',
-    image:
-      'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1200&q=80',
-    imageAlt: 'Operations dashboard and deployment monitoring',
+      'Creating modern data pipelines, dashboards, and analytics solutions that turn raw data into actionable insights for confident, data-driven decisions.',
   },
   {
-    title: 'Security & Compliance',
+    title: 'Cybersecurity',
     description:
-      'Threat modelling, security assessments, and remediation to meet compliance and reduce risk.',
-    image:
-      'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1200&q=80',
-    imageAlt: 'Cyber security lock and digital protection concept',
+      'Protecting business-critical systems with security assessments, hardening, threat monitoring, and compliance-focused controls to reduce risk.',
   },
   {
-    title: 'Data Engineering & Analytics',
+    title: 'Web & App Development',
     description:
-      'Data pipelines, analytics platforms and ML-ready infrastructure to make data useful and reliable.',
-    image:
-      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
-    imageAlt: 'Business analytics charts and data dashboard',
+      'Developing high-performance web and mobile applications with modern technologies, intuitive user experiences, and maintainable architecture.',
   },
   {
-    title: 'Consulting & Advisory',
+    title: 'API & System Integration',
     description:
-      'Architecture reviews, technology selection, and project rescue to align engineering with business goals.',
-    image:
-      'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80',
-    imageAlt: 'Business consulting team in strategy meeting',
+      'Connecting platforms, applications, and third-party services through secure APIs and integration layers to enable seamless data and process flow.',
+  },
+  {
+    title: 'Digital Transformation',
+    description:
+      'Modernizing legacy systems, reimagining customer journeys, and enabling technology-led operating models that accelerate business growth.',
+  },
+  {
+    title: 'IT Outsourcing',
+    description:
+      'Providing dedicated engineering and support teams that extend your in-house capabilities with predictable delivery, quality, and cost control.',
   },
 ]
 
@@ -67,23 +59,13 @@ function Services() {
       </div>
 
       <div className="bg-white/70 backdrop-blur-md rounded-3xl border border-blue-200/50 shadow-xl px-6 sm:px-8 py-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {SERVICES_LIST.map((service) => (
             <article
               key={service.title}
-              className="group overflow-hidden rounded-2xl border border-blue-200/60 bg-white/80 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+              className="group rounded-2xl border border-blue-200/60 bg-white/85 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
             >
-              <div className="relative h-40 overflow-hidden">
-                <img
-                  src={service.image}
-                  alt={service.imageAlt}
-                  loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/45 via-slate-900/10 to-transparent" />
-              </div>
-
-              <div className="p-6">
+              <div className="p-6 sm:p-7">
                 <h3 className="text-xl font-bold text-gray-800 mb-3">{service.title}</h3>
                 <p className="text-gray-700 text-sm leading-relaxed">{service.description}</p>
               </div>

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import OfficesSection from './OfficesSection';
+import Careers from './Careers';  
 
 function Contact() {
   const location = useLocation()
@@ -112,6 +113,7 @@ function Contact() {
             </form>
           </div>
         </div>
+        <Careers />
         <OfficesSection />
       </div>
     </main>
