@@ -49,13 +49,13 @@ export const CLIENTS_DATA = [
     website: 'https://www.techcube.co.uk/',
   },
   {
-    name: 'Aadhya Tech Limited',
+    name: 'Aadhya Tech',
     description: 'AI and technology solutions provider.',
     logo: aadhyaTechLogo,
     website: 'https://aadhyatech.com/',
   },
   {
-    name: 'Gart Group Ltd',
+    name: 'Gart Group',
     description: 'Innovation-led digital transformation partner.',
     logo: gartGroupLogo,
     website: 'https://gartgroup.co.uk/',
