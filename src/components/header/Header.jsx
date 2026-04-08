@@ -73,7 +73,7 @@ function Header() {
             <div className="absolute top-full left-0 mt-2 w-64 bg-gray-900/95 backdrop-blur-md rounded-lg shadow-xl border border-gray-700/50 z-50">
               <div className="py-2">
                 <Link
-                  to="/services#salesforce"
+                  to="/services/salesforce"
                   className="block px-4 py-3 text-gray-100 hover:bg-blue-900/50 hover:text-blue-400 transition-colors duration-200"
                   onClick={() => { setIsServicesDropdownOpen(false); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
                 >
@@ -81,7 +81,7 @@ function Header() {
                   <div className="text-sm text-gray-400">Custom Salesforce solutions and integrations</div>
                 </Link>
                 <Link
-                  to="/services#web-development"
+                  to="/services/web-development"
                   className="block px-4 py-3 text-gray-100 hover:bg-blue-900/50 hover:text-blue-400 transition-colors duration-200"
                   onClick={() => { setIsServicesDropdownOpen(false); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
                 >
@@ -89,12 +89,21 @@ function Header() {
                   <div className="text-sm text-gray-400">Modern web applications and platforms</div>
                 </Link>
                 <Link
-                  to="/services#ai-tools"
+                  to="/services/ai-automation"
                   className="block px-4 py-3 text-gray-100 hover:bg-blue-900/50 hover:text-blue-400 transition-colors duration-200"
                   onClick={() => { setIsServicesDropdownOpen(false); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
                 >
                   <div className="font-semibold">AI Tools & Solutions</div>
                   <div className="text-sm text-gray-400">AI-powered tools and intelligent automation</div>
+                </Link>
+                <div className="border-t border-gray-700 my-2"></div>
+                <Link
+                  to="/services/pos-restaurant-system"
+                  className="block px-4 py-3 text-gray-100 hover:bg-blue-900/50 hover:text-blue-400 transition-colors duration-200"
+                  onClick={() => { setIsServicesDropdownOpen(false); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
+                >
+                  <div className="font-semibold">POS Restaurant Ordering System</div>
+                  <div className="text-sm text-gray-400">Valour product for order capture, kitchen sync, and live tracking</div>
                 </Link>
                 <div className="border-t border-gray-700 my-2"></div>
                 <Link
@@ -185,14 +194,17 @@ function Header() {
             </button>
             {isServicesDropdownOpen && (
               <div className="ml-4 space-y-1">
-                <Link to="/services#salesforce" onClick={() => { closeMobileMenu(); window.scrollTo({ top: 0, behavior: 'smooth' }) }} className="block px-3 py-2 text-sm rounded hover:bg-white/10">
+                <Link to="/services/salesforce" onClick={() => { closeMobileMenu(); window.scrollTo({ top: 0, behavior: 'smooth' }) }} className="block px-3 py-2 text-sm rounded hover:bg-white/10">
                   Salesforce Development
                 </Link>
-                <Link to="/services#web-development" onClick={() => { closeMobileMenu(); window.scrollTo({ top: 0, behavior: 'smooth' }) }} className="block px-3 py-2 text-sm rounded hover:bg-white/10">
+                <Link to="/services/web-development" onClick={() => { closeMobileMenu(); window.scrollTo({ top: 0, behavior: 'smooth' }) }} className="block px-3 py-2 text-sm rounded hover:bg-white/10">
                   Web Development
                 </Link>
-                <Link to="/services#ai-tools" onClick={() => { closeMobileMenu(); window.scrollTo({ top: 0, behavior: 'smooth' }) }} className="block px-3 py-2 text-sm rounded hover:bg-white/10">
+                <Link to="/services/ai-automation" onClick={() => { closeMobileMenu(); window.scrollTo({ top: 0, behavior: 'smooth' }) }} className="block px-3 py-2 text-sm rounded hover:bg-white/10">
                   AI Tools & Solutions
+                </Link>
+                <Link to="/services/pos-restaurant-system" onClick={() => { closeMobileMenu(); window.scrollTo({ top: 0, behavior: 'smooth' }) }} className="block px-3 py-2 text-sm rounded hover:bg-white/10">
+                  POS Restaurant Ordering System
                 </Link>
                 <Link to="/services" onClick={() => { closeMobileMenu(); window.scrollTo({ top: 0, behavior: 'smooth' }) }} className="block px-3 py-2 text-sm rounded hover:bg-white/10 font-semibold">
                   View All Services →

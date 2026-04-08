@@ -52,13 +52,13 @@ export const CLIENTS_DATA = [
     name: 'Aadhya Tech',
     description: 'AI and technology solutions provider.',
     logo: aadhyaTechLogo,
-    website: 'https://aadhyatech.com/',
+    website: '',
   },
   {
     name: 'Gart Group',
     description: 'Innovation-led digital transformation partner.',
     logo: gartGroupLogo,
-    website: 'https://gartgroup.co.uk/',
+    website: '',
   },
   {
     name: 'Vol Group',

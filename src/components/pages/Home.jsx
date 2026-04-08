@@ -12,8 +12,8 @@ import dashboardPic2 from '../../assets/Images/dashboard-pic2.png'
 import dashboardPic3 from '../../assets/Images/dashboard-pic3.png'
 import dashboardPic4 from '../../assets/Images/dashboard-pic4.png'
 import aiBanner from '../../assets/Banners/AI-banner.jpeg'
-import bannerDiscuss from '../../assets/Banners/Banner-discuss-2mem.jpeg'
-import bannerTyping from '../../assets/Banners/Banner-lap-typing.jpeg'
+import bannerDiscuss from '../../assets/Banners/Banner-discuss-2mem.png'
+import posBanner from '../../assets/Banners/POS-banner.jpeg'
 import bannerWebDev from '../../assets/Banners/Banner-web-dev.jpeg'
 import OfficesSection from './OfficesSection';
 
@@ -68,24 +68,24 @@ const IMPACT_STATS = [
 const HERO_SLIDES = [
   {
     title: 'From Ideas to Launch in Weeks',
-    subtitle: 'Collaborative product squads that design, build, and ship with startup speed.',
+    subtitle: 'Collaborative product squads that design, build and ship with startup speed.',
     ctaLabel: 'Start a Project',
     ctaTo: '/contact',
     image: bannerDiscuss,
   },
   {
     title: 'We Deliver Intelligent AI Solutions That Drive Real Results',
-    subtitle: 'Automation-first engineering for platforms that stay clean, fast, and reliable.',
+    subtitle: 'Automation-first engineering for platforms that stay clean, fast and reliable.',
     ctaLabel: 'Explore Services',
     ctaTo: '/services',
     image: aiBanner,
   },
   {
-    title: 'Digital Workflows That Actually Flow',
-    subtitle: 'Automation-first engineering for platforms that stay clean, fast, and reliable.',
-    ctaLabel: 'Explore Services',
-    ctaTo: '/services',
-    image: bannerTyping,
+    title: 'Smart POS for Restaurants',
+    subtitle: 'Take orders at the counter, send tickets to the kitchen instantly, and track every live order in one simple dashboard.',
+    ctaLabel: 'Book a Demo',
+    ctaTo: '/contact',
+    image: posBanner,
   },
   {
     title: 'Web Experiences Built for Growth',
@@ -114,7 +114,7 @@ function Home() {
         // Use scrollLeft for immediate jump to avoid reverse scrolling
         container.scrollLeft = nextSlide * slideWidth;
       }
-    }, 2000); // Auto-scroll every 4 seconds
+    }, 3000); // Auto-scroll every 3 seconds
 
     return () => clearInterval(interval);
   }, [currentSlide]);
@@ -180,7 +180,7 @@ function Home() {
                 <img
                   src={slide.image}
                   alt={slide.title}
-                  className="absolute inset-0 h-full w-full object-cover lg:object-contain bg-black"
+                  className="absolute inset-0 h-full w-full object-cover object-center"
                   loading={index === 0 ? 'eager' : 'lazy'}
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/45 to-black/55" />

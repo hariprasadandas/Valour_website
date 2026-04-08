@@ -1,8 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import posBanner from '../../assets/Banners/POS-banner.jpeg'
 
 const SERVICES_LIST = [
   {
     title: 'AI & Automation',
+    path: '/services/ai-automation',
     description:
       'Designing and deploying intelligent AI solutions, copilots, and workflow automation that reduce manual effort, improve speed, and increase operational accuracy.',
   },
@@ -23,6 +26,7 @@ const SERVICES_LIST = [
   },
   {
     title: 'Web & App Development',
+    path: '/services/web-development',
     description:
       'Developing high-performance web and mobile applications with modern technologies, intuitive user experiences, and maintainable architecture.',
   },
@@ -50,6 +54,40 @@ function Services() {
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">
         Our Services
       </h1>
+
+      <section className="overflow-hidden rounded-3xl border border-orange-200/60 bg-white/85 shadow-xl">
+        <div className="grid lg:grid-cols-2">
+          <div className="relative min-h-[280px]">
+            <img src={posBanner} alt="Valour POS Restaurant Ordering System" className="absolute inset-0 h-full w-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/25 to-transparent" />
+          </div>
+          <div className="p-6 sm:p-8">
+            <span className="inline-flex rounded-full border border-orange-300/60 bg-orange-100 px-4 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-orange-700">
+              Valour Product
+            </span>
+            <h2 className="mt-4 text-2xl sm:text-3xl font-extrabold text-gray-900">POS Restaurant Ordering System</h2>
+            <p className="mt-4 text-gray-700 leading-relaxed">
+              Our own product built by Valour for restaurants to take orders quickly, send them to the kitchen instantly,
+              and monitor all ongoing orders in real time from one dashboard.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link
+                to="/services/pos-restaurant-system"
+                className="inline-flex items-center rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-500"
+              >
+                View Product Details
+              </Link>
+              <Link
+                to="/contact"
+                className="inline-flex items-center rounded-lg border border-blue-300 bg-white px-5 py-2.5 text-sm font-semibold text-blue-700 transition-colors hover:bg-blue-50"
+              >
+                Request Demo
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <div className="bg-white/75 backdrop-blur-md rounded-xl border border-blue-200/50 shadow-lg px-6 sm:px-10 py-10">
         <p className="text-lg sm:text-xl text-gray-700 leading-relaxed">
           Valour Technologies helps organisations design, build and operate resilient
@@ -68,6 +106,14 @@ function Services() {
               <div className="p-6 sm:p-7">
                 <h3 className="text-xl font-bold text-gray-800 mb-3">{service.title}</h3>
                 <p className="text-gray-700 text-sm leading-relaxed">{service.description}</p>
+                {service.path && (
+                  <Link
+                    to={service.path}
+                    className="mt-4 inline-flex items-center text-sm font-semibold text-blue-600 hover:text-blue-500"
+                  >
+                    Learn More →
+                  </Link>
+                )}
               </div>
             </article>
           ))}
