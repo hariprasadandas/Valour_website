@@ -30,15 +30,15 @@ function Contact() {
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">
           Contact Us
         </h1>
-        <div className="bg-white/75 backdrop-blur-md rounded-xl border border-blue-200/50 shadow-lg px-6 sm:px-10 py-10">
+        <div className="bg-white/75 backdrop-blur-md rounded-xl border border-blue-200/50 shadow-lg px-6 sm:px-10 py-8">
           <p className="text-lg sm:text-xl text-gray-700 leading-relaxed">
             Ready to discuss a project, partnership or job opportunity? Get in touch
             using the details below or send us a message.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-white/80 backdrop-blur-md rounded-3xl p-8 border border-blue-200/60 shadow-xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-white/80 backdrop-blur-md rounded-3xl p-7 border border-blue-200/60 shadow-xl">
             <h3 className="text-2xl font-bold text-gray-800 mb-6">Contact Details</h3>
             <div className="space-y-4 text-gray-700">
               <p>
@@ -64,9 +64,9 @@ function Contact() {
             </div>
           </div>
 
-          <div className="bg-white/80 backdrop-blur-md rounded-3xl p-8 border border-blue-200/60 shadow-xl">
+          <div className="bg-white/80 backdrop-blur-md rounded-3xl p-7 border border-blue-200/60 shadow-xl">
             <h3 className="text-2xl font-bold text-gray-800 mb-6">Send a Message</h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-5">
               <div>
                 <label htmlFor="name" className="block text-gray-700 font-medium mb-2">
                   Your name

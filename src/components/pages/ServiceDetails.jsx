@@ -1,64 +1,6 @@
 import React, { useEffect } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
-import posBanner from '../../assets/Banners/POS-banner.jpeg'
-import aiBanner from '../../assets/Banners/AI-banner.jpeg'
-import bannerWebDev from '../../assets/Banners/Banner-web-dev.jpeg'
-import bannerDiscuss from '../../assets/Banners/Banner-discuss-2mem.png'
-
-const SERVICE_DETAILS = {
-  'pos-restaurant-system': {
-    badge: 'Valour Product',
-    title: 'Valour POS Restaurant Ordering System',
-    subtitle:
-      'Our in-house product for restaurants to take orders quickly, send tickets to the kitchen in real time, and track all ongoing orders from a single screen.',
-    image: posBanner,
-    highlights: [
-      'Counter and table order taking from one interface',
-      'Instant kitchen ticket routing to reduce delays',
-      'Live order queue tracking for staff and managers',
-      'Faster billing with fewer manual mistakes',
-    ],
-  },
-  salesforce: {
-    badge: 'Service',
-    title: 'Salesforce Development',
-    subtitle:
-      'Implementation, customization, and integration services that help teams run sales, service, and operations on a unified CRM platform.',
-    image: bannerDiscuss,
-    highlights: [
-      'Sales Cloud and Service Cloud implementation',
-      'Custom flows, automations, and Apex development',
-      'Third-party API and ERP integrations',
-      'Admin enablement and long-term support',
-    ],
-  },
-  'web-development': {
-    badge: 'Service',
-    title: 'Web Development',
-    subtitle:
-      'High-performance websites and web applications focused on UX, speed, and maintainable engineering standards.',
-    image: bannerWebDev,
-    highlights: [
-      'Modern frontend and full-stack development',
-      'Responsive design for mobile and desktop',
-      'Performance optimization and SEO foundations',
-      'Secure deployment and monitoring',
-    ],
-  },
-  'ai-automation': {
-    badge: 'Service',
-    title: 'AI & Automation',
-    subtitle:
-      'Practical AI solutions and workflow automation that reduce repetitive work, improve turnaround time, and increase operational consistency.',
-    image: aiBanner,
-    highlights: [
-      'Custom AI assistants and internal copilots',
-      'Document and workflow automation',
-      'AI integrations with existing tools',
-      'Governance-focused implementation',
-    ],
-  },
-}
+import { SERVICE_DETAILS } from './serviceData'
 
 function ServiceDetails() {
   const { serviceSlug } = useParams()
@@ -73,12 +15,12 @@ function ServiceDetails() {
   }
 
   return (
-    <main className="text-gray-800 min-h-screen bg-gradient-to-br from-blue-50 via-green-50/40 via-white to-orange-50/30">
+    <main className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.14),_transparent_36%),linear-gradient(135deg,_#f8fbff_0%,_#f4f7ff_45%,_#fff8f0_100%)] text-gray-800">
       <section className="max-w-6xl mx-auto px-6 sm:px-8 py-8 sm:py-12">
-        <div className="overflow-hidden rounded-3xl border border-blue-200/50 bg-white/85 shadow-xl">
-          <div className="relative h-[45vh] min-h-[280px]">
+        <div className="overflow-hidden rounded-[2rem] border border-slate-200/70 bg-white/90 shadow-[0_24px_80px_rgba(15,23,42,0.12)] backdrop-blur">
+          <div className="relative h-[45vh] min-h-[300px]">
             <img src={service.image} alt={service.title} className="absolute inset-0 h-full w-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/45 to-black/55" />
+            <div className="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-950/55 to-slate-950/40" />
             <div className="relative z-10 h-full flex items-end p-6 sm:p-10">
               <div className="max-w-3xl text-white">
                 <span className="inline-flex items-center rounded-full bg-white/20 px-4 py-1 text-xs tracking-[0.2em] uppercase border border-white/30">
@@ -92,12 +34,12 @@ function ServiceDetails() {
             </div>
           </div>
 
-          <div className="p-6 sm:p-10 grid gap-6 md:grid-cols-2">
-            {service.highlights.map((item) => (
-              <div key={item} className="rounded-2xl border border-blue-200/60 bg-white p-5 shadow-sm">
-                <p className="text-gray-700 leading-relaxed">{item}</p>
-              </div>
-            ))}
+          <div className="p-6 sm:p-10">
+            <div className="max-w-4xl rounded-3xl border border-blue-200/60 bg-white px-6 sm:px-8 py-6 sm:py-8 shadow-sm">
+              <p className="text-base sm:text-lg leading-8 text-gray-700 whitespace-pre-line">
+                {service.description}
+              </p>
+            </div>
           </div>
 
           <div className="px-6 sm:px-10 pb-8 sm:pb-10 flex flex-wrap gap-3">

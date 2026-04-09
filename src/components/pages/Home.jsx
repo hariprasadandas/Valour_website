@@ -86,6 +86,7 @@ const HERO_SLIDES = [
     ctaLabel: 'Book a Demo',
     ctaTo: '/contact',
     image: posBanner,
+    imagePosition: 'center 30%',
   },
   {
     title: 'Web Experiences Built for Growth',
@@ -102,6 +103,16 @@ function Home() {
   const marqueeClients = useMemo(() => [...CLIENTS_DATA, ...CLIENTS_DATA], []);
   const marqueeTrackRef = useRef(null);
   const isHoveringMarqueeRef = useRef(false);
+
+  const goToSlide = (direction) => {
+    const nextSlide = (currentSlide + direction + HERO_SLIDES.length) % HERO_SLIDES.length;
+
+    setCurrentSlide(nextSlide);
+    containerRef.current?.scrollTo({
+      left: nextSlide * window.innerWidth,
+      behavior: 'smooth',
+    });
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -168,29 +179,30 @@ function Home() {
   return (
     <main className="text-gray-800 min-h-screen bg-gradient-to-br from-blue-50 via-green-50/40 via-white to-orange-50/30">
       {/* Banner Section with Auto Scrolling */}
-      <div className="relative w-full min-h-[75vh] lg:h-screen">
-        <div ref={containerRef} className="relative w-full min-h-[75vh] lg:h-screen overflow-x-auto overflow-y-hidden snap-x snap-mandatory" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+      <div className="relative w-full min-h-[61vh] lg:h-[83vh]">
+        <div ref={containerRef} className="relative w-full min-h-[61vh] lg:h-[83vh] overflow-x-auto overflow-y-hidden snap-x snap-mandatory" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
           {/* Horizontal scrollable container */}
-          <div className="flex h-[75vh] lg:h-screen w-max scroll-smooth">
+          <div className="flex h-[61vh] lg:h-[83vh] w-max scroll-smooth">
             {HERO_SLIDES.map((slide, index) => (
               <div
                 key={slide.title}
-                className={`relative w-screen h-[75vh] lg:h-screen flex-shrink-0 flex items-center justify-center snap-center overflow-hidden transition-all duration-1000 ease-in-out ${currentSlide === index ? 'opacity-100 scale-100' : 'opacity-80 scale-95'}`}
+                className={`relative w-screen h-[61vh] lg:h-[83vh] flex-shrink-0 flex items-start justify-center snap-center overflow-hidden transition-all duration-1000 ease-in-out ${currentSlide === index ? 'opacity-100 scale-100' : 'opacity-80 scale-95'}`}
               >
                 <img
                   src={slide.image}
                   alt={slide.title}
-                  className="absolute inset-0 h-full w-full object-cover object-center"
+                  className="absolute inset-0 h-full w-full object-cover"
+                  style={{ objectPosition: slide.imagePosition || 'center center' }}
                   loading={index === 0 ? 'eager' : 'lazy'}
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/45 to-black/55" />
 
-                <div className="relative z-10 px-4 sm:px-6 md:px-8 lg:px-10 max-w-7xl mx-auto w-full">
-                  <div className="max-w-2xl space-y-6 text-left">
-                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-white drop-shadow-xl">
+                <div className="relative z-10 px-4 sm:px-6 md:px-8 lg:px-10 pl-7 sm:pl-10 md:pl-14 lg:pl-16 pt-10 sm:pt-14 md:pt-16 max-w-7xl mx-auto w-full">
+                  <div className="max-w-2xl space-y-4 text-left ml-[5px]">
+                    <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight text-white drop-shadow-xl">
                       {slide.title}
                     </h1>
-                    <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-xl">
+                    <p className="text-sm sm:text-base md:text-lg text-white/90 max-w-xl">
                       {slide.subtitle}
                     </p>
                     <div className="pt-2">
@@ -206,6 +218,29 @@ function Home() {
               </div>
             ))}
         </div>
+        </div>
+
+        <div className="pointer-events-none absolute inset-y-0 left-0 right-0 z-20 flex items-center justify-between px-3 sm:px-5 lg:px-8">
+          <button
+            type="button"
+            onClick={() => goToSlide(-1)}
+            aria-label="Previous slide"
+            className="pointer-events-auto inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/30 bg-white/15 text-white backdrop-blur-md shadow-lg transition-all duration-300 hover:bg-white hover:text-gray-900"
+          >
+            <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            onClick={() => goToSlide(1)}
+            aria-label="Next slide"
+            className="pointer-events-auto inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/30 bg-white/15 text-white backdrop-blur-md shadow-lg transition-all duration-300 hover:bg-white hover:text-gray-900"
+          >
+            <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </button>
         </div>
         {/* Slide Indicators - Only visible within banner slides */}
         {/* <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-[10] flex space-x-3 pointer-events-auto">
@@ -255,9 +290,7 @@ function Home() {
                 rel={client.website ? 'noopener noreferrer' : undefined}
                 className={`group flex min-w-[250px] flex-col items-center rounded-2xl border bg-white/90 px-5 py-5 backdrop-blur-md shadow-lg transition-all duration-300 ${client.website ? 'cursor-pointer border-blue-200/50 hover:-translate-y-1 hover:shadow-xl hover:border-blue-400/70 hover:ring-2 hover:ring-blue-200/70' : 'cursor-default border-blue-200/40'}`}
               >
-                <div
-                  className="flex h-24 w-40 items-center justify-center rounded-xl bg-white p-3 shadow-inner border border-gray-200"
-                >
+                <div className="flex h-24 w-40 items-center justify-center rounded-xl bg-white p-3 shadow-inner">
                   <img
                     src={client.logo}
                     alt={client.name}

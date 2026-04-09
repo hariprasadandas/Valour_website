@@ -9,15 +9,15 @@ function Careers() {
           Careers at Valour Technologies
         </h1>
 
-        <div className="bg-white/75 backdrop-blur-md rounded-xl border border-blue-200/50 shadow-lg px-6 sm:px-10 py-10">
+        <div className="bg-white/75 backdrop-blur-md rounded-xl border border-blue-200/50 shadow-lg px-6 sm:px-10 py-8">
           <p className="text-lg sm:text-xl text-gray-700 leading-relaxed">
             We're a growing team of engineers, architects and product professionals solving
             cloud, security and data problems. We hire for curiosity, ownership and collaboration.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <section aria-labelledby="why-join" className="bg-white/80 backdrop-blur-md rounded-3xl p-8 border border-blue-200/60 shadow-xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <section aria-labelledby="why-join" className="bg-white/80 backdrop-blur-md rounded-3xl p-7 border border-blue-200/60 shadow-xl">
             <h2 id="why-join" className="text-2xl font-bold text-gray-800 mb-6">Why join us</h2>
             <ul className="list-disc pl-5 space-y-4 text-gray-700 text-lg">
               <li>Senior-led teams with real ownership.</li>
@@ -26,7 +26,7 @@ function Careers() {
             </ul>
           </section>
 
-          <section aria-labelledby="open-roles" className="bg-white/80 backdrop-blur-md rounded-3xl p-8 border border-blue-200/60 shadow-xl">
+          {/* <section aria-labelledby="open-roles" className="bg-white/80 backdrop-blur-md rounded-3xl p-8 border border-blue-200/60 shadow-xl">
             <h2 id="open-roles" className="text-2xl font-bold text-gray-800 mb-6">Open roles</h2>
             <ul className="list-disc pl-5 space-y-4 text-gray-700 text-lg">
               <li>Senior Full-Stack Engineer</li>
@@ -35,10 +35,10 @@ function Careers() {
               <li>Security Engineer</li>
             </ul>
             <p className="mt-6 text-gray-700 text-lg">If you don't see the perfect role, we're happy to hear from talented engineers — send your CV and a short note.</p>
-          </section>
+          </section> */}
         </div>
 
-        <section className="bg-white/80 backdrop-blur-md rounded-3xl p-8 border border-blue-200/60 shadow-xl">
+        <section className="bg-white/80 backdrop-blur-md rounded-3xl p-7 border border-blue-200/60 shadow-xl">
           <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-6">How to apply</h3>
           <p className="text-gray-700 mb-8 text-lg">
             Email your CV and a short message to{' '}

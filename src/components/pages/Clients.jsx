@@ -83,15 +83,15 @@ const Clients = () => {
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">
           Our Clients
         </h1>
-        <div className="bg-white/70 backdrop-blur-md rounded-3xl border border-blue-200/50 shadow-xl px-6 sm:px-8 py-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="bg-white/70 backdrop-blur-md rounded-3xl border border-blue-200/50 shadow-xl px-6 sm:px-8 py-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {clients.map((client, index) => (
               <a
                 key={index}
                 href={client.website || undefined}
                 target={client.website ? '_blank' : undefined}
                 rel={client.website ? 'noopener noreferrer' : undefined}
-                className={`bg-white rounded-xl p-6 border border-blue-200/60 shadow-lg transition-all duration-200 text-center ${client.website ? 'hover:shadow-xl hover:-translate-y-1 cursor-pointer' : 'cursor-default'}`}
+                className={`bg-white rounded-xl p-5 border border-blue-200/60 shadow-lg transition-all duration-200 text-center ${client.website ? 'hover:shadow-xl hover:-translate-y-1 cursor-pointer' : 'cursor-default'}`}
               >
                 <div className="w-24 h-12 mx-auto mb-4 flex items-center justify-center rounded-lg bg-blue-50">
                   <img src={client.logo} alt={client.name} className="max-w-full max-h-full object-contain" />
