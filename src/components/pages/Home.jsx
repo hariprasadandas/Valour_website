@@ -146,6 +146,7 @@ function Home() {
   const handleMarqueePointerMove = (event) => {
     if (!isDraggingMarqueeRef.current) return;
 
+    event.preventDefault();
     const deltaX = event.clientX - dragStartXRef.current;
     marqueePositionRef.current = normalizeMarqueePosition(dragStartPositionRef.current + deltaX);
     applyMarqueeTransform();
@@ -154,7 +155,9 @@ function Home() {
   const handleMarqueePointerEnd = (event) => {
     isDraggingMarqueeRef.current = false;
     isHoveringMarqueeRef.current = false;
-    event.currentTarget.releasePointerCapture?.(event.pointerId);
+    if (event.currentTarget.hasPointerCapture?.(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
   };
 
   useEffect(() => {
@@ -316,6 +319,7 @@ function Home() {
         </div>
         <div
           className="relative overflow-hidden cursor-grab active:cursor-grabbing select-none"
+          style={{ touchAction: 'pan-y' }}
           onMouseEnter={() => { isHoveringMarqueeRef.current = true; }}
           onMouseLeave={() => {
             if (!isDraggingMarqueeRef.current) {
@@ -326,6 +330,7 @@ function Home() {
           onPointerMove={handleMarqueePointerMove}
           onPointerUp={handleMarqueePointerEnd}
           onPointerCancel={handleMarqueePointerEnd}
+          onPointerLeave={handleMarqueePointerEnd}
         >
           <div className="pointer-events-none absolute inset-y-0 left-0 w-24 sm:w-36 bg-gradient-to-r from-white via-white/70 to-transparent" />
           <div className="pointer-events-none absolute inset-y-0 right-0 w-24 sm:w-36 bg-gradient-to-l from-white via-white/70 to-transparent" />
