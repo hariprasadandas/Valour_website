@@ -103,6 +103,11 @@ function Home() {
   const marqueeClients = useMemo(() => [...CLIENTS_DATA, ...CLIENTS_DATA], []);
   const marqueeTrackRef = useRef(null);
   const isHoveringMarqueeRef = useRef(false);
+  const isDraggingMarqueeRef = useRef(false);
+  const marqueePositionRef = useRef(0);
+  const marqueeSegmentWidthRef = useRef(0);
+  const dragStartXRef = useRef(0);
+  const dragStartPositionRef = useRef(0);
 
   const goToSlide = (direction) => {
     const nextSlide = (currentSlide + direction + HERO_SLIDES.length) % HERO_SLIDES.length;
@@ -112,6 +117,44 @@ function Home() {
       left: nextSlide * window.innerWidth,
       behavior: 'smooth',
     });
+  };
+
+  const normalizeMarqueePosition = (position) => {
+    const segmentWidth = marqueeSegmentWidthRef.current;
+    if (segmentWidth <= 0) return position;
+
+    let normalized = position;
+    while (normalized <= -segmentWidth) normalized += segmentWidth;
+    while (normalized > 0) normalized -= segmentWidth;
+    return normalized;
+  };
+
+  const applyMarqueeTransform = () => {
+    if (marqueeTrackRef.current) {
+      marqueeTrackRef.current.style.transform = `translateX(${marqueePositionRef.current}px)`;
+    }
+  };
+
+  const handleMarqueePointerDown = (event) => {
+    isDraggingMarqueeRef.current = true;
+    isHoveringMarqueeRef.current = true;
+    dragStartXRef.current = event.clientX;
+    dragStartPositionRef.current = marqueePositionRef.current;
+    event.currentTarget.setPointerCapture?.(event.pointerId);
+  };
+
+  const handleMarqueePointerMove = (event) => {
+    if (!isDraggingMarqueeRef.current) return;
+
+    const deltaX = event.clientX - dragStartXRef.current;
+    marqueePositionRef.current = normalizeMarqueePosition(dragStartPositionRef.current + deltaX);
+    applyMarqueeTransform();
+  };
+
+  const handleMarqueePointerEnd = (event) => {
+    isDraggingMarqueeRef.current = false;
+    isHoveringMarqueeRef.current = false;
+    event.currentTarget.releasePointerCapture?.(event.pointerId);
   };
 
   useEffect(() => {
@@ -134,21 +177,18 @@ function Home() {
     if (!track) return;
 
     let frameId;
-    let position = 0;
     const speed = 0.75;
-    let segmentWidth = track.scrollWidth / 2;
 
     const updateSegmentWidth = () => {
-      segmentWidth = track.scrollWidth / 2;
+      marqueeSegmentWidthRef.current = track.scrollWidth / 2;
+      marqueePositionRef.current = normalizeMarqueePosition(marqueePositionRef.current);
+      applyMarqueeTransform();
     };
 
     const step = () => {
-      if (!isHoveringMarqueeRef.current) {
-        position -= speed;
-        if (segmentWidth > 0 && -position >= segmentWidth) {
-          position += segmentWidth;
-        }
-        track.style.transform = `translateX(${position}px)`;
+      if (!isHoveringMarqueeRef.current && !isDraggingMarqueeRef.current) {
+        marqueePositionRef.current = normalizeMarqueePosition(marqueePositionRef.current - speed);
+        applyMarqueeTransform();
       }
       frameId = requestAnimationFrame(step);
     };
@@ -172,6 +212,7 @@ function Home() {
       cancelAnimationFrame(frameId);
       window.removeEventListener('resize', handleResize);
       if (resizeObserver) resizeObserver.disconnect();
+      isDraggingMarqueeRef.current = false;
       track.style.transform = '';
     };
   }, [marqueeClients]);
@@ -273,22 +314,29 @@ function Home() {
             Partnering With Forward-Thinking Teams
           </h2>
         </div>
-        <div className="relative overflow-hidden">
+        <div
+          className="relative overflow-hidden cursor-grab active:cursor-grabbing select-none"
+          onMouseEnter={() => { isHoveringMarqueeRef.current = true; }}
+          onMouseLeave={() => {
+            if (!isDraggingMarqueeRef.current) {
+              isHoveringMarqueeRef.current = false;
+            }
+          }}
+          onPointerDown={handleMarqueePointerDown}
+          onPointerMove={handleMarqueePointerMove}
+          onPointerUp={handleMarqueePointerEnd}
+          onPointerCancel={handleMarqueePointerEnd}
+        >
           <div className="pointer-events-none absolute inset-y-0 left-0 w-24 sm:w-36 bg-gradient-to-r from-white via-white/70 to-transparent" />
           <div className="pointer-events-none absolute inset-y-0 right-0 w-24 sm:w-36 bg-gradient-to-l from-white via-white/70 to-transparent" />
           <div
             ref={marqueeTrackRef}
             className="flex w-max gap-10 px-10 py-2 will-change-transform"
-            onMouseEnter={() => { isHoveringMarqueeRef.current = true; }}
-            onMouseLeave={() => { isHoveringMarqueeRef.current = false; }}
           >
             {marqueeClients.map((client, index) => (
-              <a
+              <div
                 key={`${client.name}-${index}`}
-                href={client.website || undefined}
-                target={client.website ? '_blank' : undefined}
-                rel={client.website ? 'noopener noreferrer' : undefined}
-                className={`group flex min-w-[250px] flex-col items-center rounded-2xl border bg-white/90 px-5 py-5 backdrop-blur-md shadow-lg transition-all duration-300 ${client.website ? 'cursor-pointer border-blue-200/50 hover:-translate-y-1 hover:shadow-xl hover:border-blue-400/70 hover:ring-2 hover:ring-blue-200/70' : 'cursor-default border-blue-200/40'}`}
+                className="group flex min-w-[250px] flex-col items-center rounded-2xl border border-blue-200/50 bg-white/90 px-5 py-5 backdrop-blur-md shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-blue-400/70 hover:ring-2 hover:ring-blue-200/70"
               >
                 <div className="flex h-24 w-40 items-center justify-center rounded-xl bg-white p-3 shadow-inner">
                   <img
@@ -301,7 +349,7 @@ function Home() {
                 <span className="mt-3 text-sm sm:text-base font-semibold text-gray-900 text-center leading-snug">
                   {client.name}
                 </span>
-              </a>
+              </div>
             ))}
           </div>
         </div>

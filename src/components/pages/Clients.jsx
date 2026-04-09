@@ -16,61 +16,51 @@ export const CLIENTS_DATA = [
     name: 'The Palms Hotel',
     description: 'Hospitality and guest experience brand.',
     logo: thePalmsLogo,
-    website: 'https://www.palmshotellondon.co.uk/',
   },
   {
     name: 'Newmarket Holidays',
     description: 'Travel and hospitality brand.',
     logo: newmarketHolidaysLogo,
-    website: 'https://www.newmarketholidays.co.uk/',
   },
   {
     name: 'Reliance Nippon Life Insurance',
     description: 'Insurance and financial services company.',
     logo: relianceLogo,
-    website: 'https://www.indusindnipponlife.com/',
   },
   {
     name: 'Saasphire',
     description: 'SaaS-focused product and platform company.',
     logo: saasphireLogo,
-    website: 'https://www.saasphire.co.uk/',
   },
   {
     name: 'Paradise Biryani Pointe',
     description: 'Food and restaurant chain.',
     logo: paradiseLogo,
-    website: 'https://paradisebiryanipointe.co.uk/',
   },
   {
     name: 'Tech Cube',
     description: 'Security technology and sales solutions.',
     logo: techCubeLogo,
-    website: 'https://www.techcube.co.uk/',
   },
   {
     name: 'Aadhya Tech',
     description: 'AI and technology solutions provider.',
     logo: aadhyaTechLogo,
-    website: '',
   },
   {
     name: 'Gart Group',
     description: 'Innovation-led digital transformation partner.',
     logo: gartGroupLogo,
-    website: '',
   },
   {
     name: 'Vol Group',
     description: 'Technology-focused business group.',
     logo: volGroupLogo,
-    website: 'https://volgroup.co.uk/',
   },
   {
     name: 'Webfxme',
     description: 'UX/UI and web design company.',
     logo: webfxmeLogo,
-    website: 'https://webfx.me/',
   },
 ];
 
@@ -86,19 +76,16 @@ const Clients = () => {
         <div className="bg-white/70 backdrop-blur-md rounded-3xl border border-blue-200/50 shadow-xl px-6 sm:px-8 py-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {clients.map((client, index) => (
-              <a
+              <div
                 key={index}
-                href={client.website || undefined}
-                target={client.website ? '_blank' : undefined}
-                rel={client.website ? 'noopener noreferrer' : undefined}
-                className={`bg-white rounded-xl p-5 border border-blue-200/60 shadow-lg transition-all duration-200 text-center ${client.website ? 'hover:shadow-xl hover:-translate-y-1 cursor-pointer' : 'cursor-default'}`}
+                className="bg-white rounded-xl p-5 border border-blue-200/60 shadow-lg transition-all duration-200 text-center hover:shadow-xl hover:-translate-y-1"
               >
                 <div className="w-24 h-12 mx-auto mb-4 flex items-center justify-center rounded-lg bg-blue-50">
                   <img src={client.logo} alt={client.name} className="max-w-full max-h-full object-contain" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-800 mb-2">{client.name}</h3>
                 <p className="text-gray-600 text-sm">{client.description}</p>
-              </a>
+              </div>
           ))}
           </div>
         </div>
