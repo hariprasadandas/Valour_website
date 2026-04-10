@@ -1,13 +1,27 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import posBanner from '../../assets/Banners/POS-banner.jpeg'
 import { SERVICES_LIST, SERVICE_DETAILS } from './serviceData'
+import { cardVariants, hoverLift, sectionVariants, sectionViewport } from '../common/motionPresets'
+
+const FULL_BLEED_IMAGE_SLUGS = new Set([
+  'ai-automation',
+  'web-development',
+  'pos-restaurant-system',
+])
 
 function Services() {
   return (
-    <main className="text-gray-800 min-h-screen bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.14),_transparent_36%),linear-gradient(135deg,_#f8fbff_0%,_#f4f7ff_45%,_#fff8f0_100%)]">
+    <motion.main
+      className="text-gray-800 min-h-screen bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.14),_transparent_36%),linear-gradient(135deg,_#f8fbff_0%,_#f4f7ff_45%,_#fff8f0_100%)]"
+      variants={sectionVariants}
+      initial="hidden"
+      whileInView="show"
+      viewport={sectionViewport}
+    >
       <div className="px-6 sm:px-10 md:px-12 lg:px-14 max-w-7xl mx-auto pt-4 sm:pt-6 md:pt-8 pb-14 space-y-12">
-        <div className="text-center max-w-3xl mx-auto space-y-4">
+        <motion.div variants={cardVariants} className="text-center max-w-3xl mx-auto space-y-4">
           <span className="inline-flex items-center rounded-full border border-blue-200 bg-white/80 px-4 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-blue-700 shadow-sm">
             What We Do
           </span>
@@ -17,12 +31,12 @@ function Services() {
           <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
             A clean overview of the capabilities we deliver, with each service paired to its matching visual so the offer is easy to scan and easy to remember.
           </p>
-        </div>
+        </motion.div>
 
-      <section className="overflow-hidden rounded-[2rem] border border-orange-200/60 bg-white/90 shadow-[0_24px_80px_rgba(15,23,42,0.12)] backdrop-blur">
+      <motion.section variants={cardVariants} className="overflow-hidden rounded-[2rem] border border-orange-200/60 bg-white/90 shadow-[0_24px_80px_rgba(15,23,42,0.12)] backdrop-blur">
         <div className="grid lg:grid-cols-2">
           <div className="relative min-h-[280px]">
-            <img src={posBanner} alt="Valour POS Restaurant Ordering System" className="absolute inset-0 h-full w-full object-cover" />
+            <img src={posBanner} alt="Valour POS Restaurant Ordering System" className="absolute inset-0 h-full w-full object-cover object-center" style={{ objectPosition: 'center 22%' }} />
             <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/25 to-transparent" />
           </div>
           <div className="p-6 sm:p-8 lg:p-10">
@@ -50,31 +64,38 @@ function Services() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      <div className="rounded-3xl border border-blue-200/50 bg-white/80 px-6 sm:px-10 py-10 shadow-lg backdrop-blur-md">
+      <motion.div variants={cardVariants} className="rounded-3xl border border-blue-200/50 bg-white/80 px-6 sm:px-10 py-10 shadow-lg backdrop-blur-md">
         <p className="text-lg sm:text-xl text-gray-700 leading-relaxed max-w-4xl">
           Valour Technologies helps organisations design, build and operate resilient
           digital platforms. We offer end-to-end services from product strategy to
           long-term platform operations.
         </p>
-      </div>
+      </motion.div>
 
-      <div className="rounded-3xl border border-blue-200/50 bg-white/75 px-6 sm:px-8 py-10 shadow-xl backdrop-blur-md">
+      <motion.div variants={cardVariants} className="rounded-3xl border border-blue-200/50 bg-white/75 px-6 sm:px-8 py-10 shadow-xl backdrop-blur-md">
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
           {SERVICES_LIST.map((service) => {
             const detail = SERVICE_DETAILS[service.slug]
+            const useFullBleedImage = FULL_BLEED_IMAGE_SLUGS.has(service.slug)
 
             return (
-              <article
+              <motion.article
                 key={service.title}
+                variants={cardVariants}
+                whileHover={hoverLift}
                 className="group overflow-hidden rounded-[1.5rem] border border-slate-200/80 bg-white shadow-[0_12px_40px_rgba(15,23,42,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(15,23,42,0.14)]"
               >
                 <div className="relative h-44 overflow-hidden">
                   <img
                     src={detail?.image}
                     alt={service.title}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className={`h-full w-full transition-transform duration-500 ${
+                      useFullBleedImage
+                        ? 'object-cover group-hover:scale-105'
+                        : 'object-contain object-center p-1.5 group-hover:scale-100'
+                    }`}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/20 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 p-5 text-white">
@@ -93,11 +114,11 @@ function Services() {
                     Learn More →
                   </Link>
                 </div>
-              </article>
+              </motion.article>
             )
           })}
         </div>
-      </div>
+      </motion.div>
 
       {/* <section className="bg-white/75 backdrop-blur-md rounded-3xl p-10 border border-blue-200/60 shadow-xl">
         <h2 className="text-2xl font-bold text-gray-800 mb-6">How we work</h2>
@@ -114,7 +135,7 @@ function Services() {
         </Link>
       </section> */}
       </div>
-    </main>
+    </motion.main>
   )
 }
 

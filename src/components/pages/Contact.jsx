@@ -1,7 +1,9 @@
 import React, { useEffect, useRef } from 'react'
+import { motion } from 'framer-motion'
 import { useLocation } from 'react-router-dom'
 import OfficesSection from './OfficesSection';
 import Careers from './Careers';  
+import { cardVariants, sectionVariants, sectionViewport } from '../common/motionPresets'
 
 function Contact() {
   const location = useLocation()
@@ -25,20 +27,26 @@ function Contact() {
   }
 
   return (
-    <main className="text-gray-800 min-h-screen bg-gradient-to-br from-blue-50 via-green-50/40 via-white to-orange-50/30">
+    <motion.main
+      className="text-gray-800 min-h-screen bg-gradient-to-br from-blue-50 via-green-50/40 via-white to-orange-50/30"
+      variants={sectionVariants}
+      initial="hidden"
+      whileInView="show"
+      viewport={sectionViewport}
+    >
       <div className="px-6 sm:px-10 md:px-12 lg:px-14 max-w-7xl mx-auto pt-2 sm:pt-4 md:pt-6 pb-12 space-y-12">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">
+        <motion.h1 variants={cardVariants} className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">
           Contact Us
-        </h1>
-        <div className="bg-white/75 backdrop-blur-md rounded-xl border border-blue-200/50 shadow-lg px-6 sm:px-10 py-8">
+        </motion.h1>
+        <motion.div variants={cardVariants} className="bg-white/75 backdrop-blur-md rounded-xl border border-blue-200/50 shadow-lg px-6 sm:px-10 py-8">
           <p className="text-lg sm:text-xl text-gray-700 leading-relaxed">
             Ready to discuss a project, partnership or job opportunity? Get in touch
             using the details below or send us a message.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-white/80 backdrop-blur-md rounded-3xl p-7 border border-blue-200/60 shadow-xl">
+          <motion.div variants={cardVariants} className="bg-white/80 backdrop-blur-md rounded-3xl p-7 border border-blue-200/60 shadow-xl">
             <h3 className="text-2xl font-bold text-gray-800 mb-6">Contact Details</h3>
             <div className="space-y-4 text-gray-700">
               <p>
@@ -62,9 +70,9 @@ function Contact() {
                 Hyderabad, Telangana - 500081.
               </p>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="bg-white/80 backdrop-blur-md rounded-3xl p-7 border border-blue-200/60 shadow-xl">
+          <motion.div variants={cardVariants} className="bg-white/80 backdrop-blur-md rounded-3xl p-7 border border-blue-200/60 shadow-xl">
             <h3 className="text-2xl font-bold text-gray-800 mb-6">Send a Message</h3>
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
@@ -111,12 +119,12 @@ function Contact() {
                 Send Message
               </button>
             </form>
-          </div>
+          </motion.div>
         </div>
         <Careers />
         <OfficesSection />
       </div>
-    </main>
+    </motion.main>
   )
 }
 

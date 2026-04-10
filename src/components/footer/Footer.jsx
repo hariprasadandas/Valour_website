@@ -1,5 +1,7 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import { cardVariants, sectionVariants, sectionViewport } from '../common/motionPresets'
 
 function Footer() {
 	const handleQuickLinkNavigation = () => {
@@ -9,19 +11,25 @@ function Footer() {
 	}
 
 	return (
-		<footer className="w-full bg-gradient-to-br from-[#0b2545] via-[#1a1446] to-[#0a0f1f] text-white mt-8 border-t border-white/10">
+		<motion.footer
+			className="w-full bg-gradient-to-br from-[#0b2545] via-[#1a1446] to-[#0a0f1f] text-white mt-8 border-t border-white/10"
+			variants={sectionVariants}
+			initial="hidden"
+			whileInView="show"
+			viewport={sectionViewport}
+		>
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-12 md:py-16">
 				<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-					<div className="w-full">
+					<motion.div variants={cardVariants} className="w-full">
 						<h3 className="text-lg font-semibold mb-3">Valour Technologies</h3>
 						<p className="text-sm text-white/80 mb-4">Innovate. Secure. Scale.</p>
 						<p className="text-sm mb-2 text-white/80">We design and build secure, scalable software and cloud platforms that help organizations accelerate digital transformation.</p>
 						<p className="text-sm mb-1 text-white/80">Email: <a href="mailto:info@valourtechnologies.com" className="text-blue-300 hover:text-blue-200 transition-colors">info@valourtechnologies.com</a></p>
 						<p className="text-sm text-white/80">IND Phone: +91 9515272424</p>
 						<p className="text-sm text-white/80">UK Phone: +44 7376 472095</p>
-					</div>
+					</motion.div>
 
-					<div className="w-full">
+					<motion.div variants={cardVariants} className="w-full">
 						<h4 className="text-lg font-semibold mb-3">Quick Links</h4>
 						<ul className="space-y-2 text-sm">
 							<li><Link to="/about" onClick={handleQuickLinkNavigation} className="text-white/80 hover:text-blue-200 transition-colors">About Us</Link></li>
@@ -31,9 +39,9 @@ function Footer() {
 							<li><Link to="/careers" onClick={handleQuickLinkNavigation} className="text-white/80 hover:text-blue-200 transition-colors">Careers</Link></li>
 							<li><Link to="/contact" onClick={handleQuickLinkNavigation} className="text-white/80 hover:text-blue-200 transition-colors">Contact Us</Link></li>
 						</ul>
-					</div>
+					</motion.div>
 
-					<div className="w-full text-left md:text-right">
+					<motion.div variants={cardVariants} className="w-full text-left md:text-right">
 						<h4 className="text-lg font-semibold mb-3">Connect With Us</h4>
 						<div className="flex md:justify-end space-x-4 mb-4">
 							<a href="https://www.instagram.com/valourtechnologies/" className="text-white/80 hover:text-blue-200 transition-colors">
@@ -55,10 +63,10 @@ function Footer() {
 						<p className="text-sm">© 2022 Valour Technologies</p>
 						{/* <p className="text-sm">© {new Date().getFullYear()} Valour Technologies</p> */}
 						{/* <p className="text-sm text-pink-300 mt-2">Made with ❤️ by Hari</p>  */}
-					</div>
+					</motion.div>
 				</div>
 			</div>
-		</footer>
+		</motion.footer>
 	)
 }
 

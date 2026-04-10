@@ -176,22 +176,32 @@ function Header() {
         <nav className="flex flex-col gap-1 p-4 text-white bg-slate-900/95">
           <Link to="/" onClick={() => { closeMobileMenu(); window.scrollTo({ top: 0, behavior: 'smooth' }) }} className="px-3 py-2 rounded hover:bg-white/10">Home</Link>
           <div className="space-y-1" ref={mobileServicesRef}>
-            <button
-              onClick={toggleServicesDropdown}
-              className="w-full text-left px-3 py-2 rounded hover:bg-white/10 flex items-center justify-between"
-              aria-expanded={isServicesDropdownOpen}
-              aria-haspopup="true"
-            >
-              Services
-              <svg
-                className={`w-4 h-4 transition-transform duration-200 ${isServicesDropdownOpen ? 'rotate-180' : ''}`}
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+            <div className="flex items-center gap-1">
+              <Link
+                to="/services"
+                onClick={() => { closeMobileMenu(); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
+                className="flex-1 px-3 py-2 rounded hover:bg-white/10"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
+                Services
+              </Link>
+              <button
+                type="button"
+                onClick={toggleServicesDropdown}
+                className="inline-flex h-9 w-9 items-center justify-center rounded hover:bg-white/10"
+                aria-label="Toggle services menu"
+                aria-expanded={isServicesDropdownOpen}
+                aria-haspopup="true"
+              >
+                <svg
+                  className={`w-4 h-4 transition-transform duration-200 ${isServicesDropdownOpen ? 'rotate-180' : ''}`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+            </div>
             {isServicesDropdownOpen && (
               <div className="ml-4 space-y-1">
                 <Link to="/services/salesforce" onClick={() => { closeMobileMenu(); window.scrollTo({ top: 0, behavior: 'smooth' }) }} className="block px-3 py-2 text-sm rounded hover:bg-white/10">

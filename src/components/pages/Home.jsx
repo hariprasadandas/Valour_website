@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
+import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 // import HeroSection from '../hero/HeroSection'
 import About from './About'
@@ -16,6 +17,7 @@ import bannerDiscuss from '../../assets/Banners/Banner-discuss-2mem.png'
 import posBanner from '../../assets/Banners/POS-banner.jpeg'
 import bannerWebDev from '../../assets/Banners/Banner-web-dev.jpeg'
 import OfficesSection from './OfficesSection';
+import { cardVariants, hoverLift, sectionVariants, sectionViewport } from '../common/motionPresets'
 
 const CERTIFIED_PARTNERS = [
   {
@@ -117,6 +119,14 @@ function Home() {
       left: nextSlide * window.innerWidth,
       behavior: 'smooth',
     });
+  };
+
+  const handleMarqueeNavigation = (direction) => {
+    const cardWidth = 260; // min-w-[250px] + gap-10 (approximately 260px total)
+    const scrollAmount = cardWidth * direction;
+    
+    marqueePositionRef.current = normalizeMarqueePosition(marqueePositionRef.current + scrollAmount);
+    applyMarqueeTransform();
   };
 
   const normalizeMarqueePosition = (position) => {
@@ -221,16 +231,22 @@ function Home() {
   }, [marqueeClients]);
 
   return (
-    <main className="text-gray-800 min-h-screen bg-gradient-to-br from-blue-50 via-green-50/40 via-white to-orange-50/30">
+    <motion.main
+      className="text-gray-800 min-h-screen bg-gradient-to-br from-blue-50 via-green-50/40 via-white to-orange-50/30"
+      variants={sectionVariants}
+      initial="hidden"
+      whileInView="show"
+      viewport={sectionViewport}
+    >
       {/* Banner Section with Auto Scrolling */}
-      <div className="relative w-full min-h-[61vh] lg:h-[83vh]">
-        <div ref={containerRef} className="relative w-full min-h-[61vh] lg:h-[83vh] overflow-x-auto overflow-y-hidden snap-x snap-mandatory" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+      <motion.div variants={cardVariants} className="relative w-full min-h-[40vh] lg:h-[83vh]">
+        <div ref={containerRef} className="relative w-full min-h-[40vh] lg:h-[83vh] overflow-x-auto overflow-y-hidden snap-x snap-mandatory" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
           {/* Horizontal scrollable container */}
-          <div className="flex h-[61vh] lg:h-[83vh] w-max scroll-smooth">
+          <div className="flex h-[40vh] lg:h-[83vh] w-max scroll-smooth">
             {HERO_SLIDES.map((slide, index) => (
               <div
                 key={slide.title}
-                className={`relative w-screen h-[61vh] lg:h-[83vh] flex-shrink-0 flex items-start justify-center snap-center overflow-hidden transition-all duration-1000 ease-in-out ${currentSlide === index ? 'opacity-100 scale-100' : 'opacity-80 scale-95'}`}
+                className={`relative w-screen h-[40vh] lg:h-[83vh] flex-shrink-0 flex items-start justify-center snap-center overflow-hidden transition-all duration-1000 ease-in-out ${currentSlide === index ? 'opacity-100 scale-100' : 'opacity-80 scale-95'}`}
               >
                 <img
                   src={slide.image}
@@ -243,10 +259,10 @@ function Home() {
 
                 <div className="relative z-10 px-4 sm:px-6 md:px-8 lg:px-10 pl-7 sm:pl-10 md:pl-14 lg:pl-16 pt-10 sm:pt-14 md:pt-16 max-w-7xl mx-auto w-full">
                   <div className="max-w-2xl space-y-4 text-left ml-[5px]">
-                    <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight text-white drop-shadow-xl">
+                    <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold leading-tight text-white drop-shadow-xl">
                       {slide.title}
                     </h1>
-                    <p className="text-sm sm:text-base md:text-lg text-white/90 max-w-xl">
+                    <p className="text-xs sm:text-sm md:text-base text-white/90 max-w-xl font-bold">
                       {slide.subtitle}
                     </p>
                     <div className="pt-2">
@@ -306,9 +322,9 @@ function Home() {
             />
           ))}
         </div> */}
-      </div>
+      </motion.div>
 
-      <section className="relative py-12 md:py-16">
+      <motion.section variants={cardVariants} className="relative py-12 md:py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center mb-8">
           <p className="text-xs tracking-[0.35em] uppercase text-blue-500/70 mb-3">
             Our Clients
@@ -339,8 +355,10 @@ function Home() {
             className="flex w-max gap-10 px-10 py-2 will-change-transform"
           >
             {marqueeClients.map((client, index) => (
-              <div
+              <motion.div
                 key={`${client.name}-${index}`}
+                variants={cardVariants}
+                whileHover={hoverLift}
                 className="group flex min-w-[250px] flex-col items-center rounded-2xl border border-blue-200/50 bg-white/90 px-5 py-5 backdrop-blur-md shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-blue-400/70 hover:ring-2 hover:ring-blue-200/70"
               >
                 <div className="flex h-24 w-40 items-center justify-center rounded-xl bg-white p-3 shadow-inner">
@@ -354,13 +372,36 @@ function Home() {
                 <span className="mt-3 text-sm sm:text-base font-semibold text-gray-900 text-center leading-snug">
                   {client.name}
                 </span>
-              </div>
+              </motion.div>
             ))}
           </div>
+          {/* Navigation buttons for marquee - visible on mobile */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 right-0 z-20 md:hidden flex items-center justify-between px-3">
+            <button
+              type="button"
+              onClick={() => handleMarqueeNavigation(1)}
+              aria-label="Previous clients"
+              className="pointer-events-auto inline-flex h-10 w-10 items-center justify-center rounded-full border border-blue-300/50 bg-blue-100/80 text-blue-600 backdrop-blur-md shadow-lg transition-all duration-300 hover:bg-blue-200 hover:border-blue-400"
+            >
+              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M15 18l-6-6 6-6" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              onClick={() => handleMarqueeNavigation(-1)}
+              aria-label="Next clients"
+              className="pointer-events-auto inline-flex h-10 w-10 items-center justify-center rounded-full border border-blue-300/50 bg-blue-100/80 text-blue-600 backdrop-blur-md shadow-lg transition-all duration-300 hover:bg-blue-200 hover:border-blue-400"
+            >
+              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </button>
+          </div>
         </div>
-      </section>
+      </motion.section>
 
-      <section className="relative py-10 sm:py-12">
+      <motion.section variants={cardVariants} className="relative py-10 sm:py-12">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-8">
             <p className="text-[11px] tracking-[0.35em] uppercase text-blue-500/70 mb-2">
@@ -376,8 +417,10 @@ function Home() {
           </div>
           <div className="grid gap-4 md:gap-5 md:grid-cols-2 xl:grid-cols-4">
             {IMPACT_STATS.map((stat) => (
-              <div
+              <motion.div
                 key={stat.title}
+                variants={cardVariants}
+                whileHover={hoverLift}
                 className="group relative flex flex-col items-center rounded-2xl border border-white/60 bg-white/80 px-4 py-6 text-center shadow-[0_12px_32px_rgba(15,23,42,0.08)] backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(15,23,42,0.12)]"
               >
                 <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${stat.iconAccent} shadow-inner`}>
@@ -397,15 +440,15 @@ function Home() {
                   {stat.subtitle}
                 </p>
                 <div className="absolute inset-x-6 bottom-3 h-px bg-gradient-to-r from-transparent via-blue-200/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
       
       
 
-      <section className="relative py-14 sm:py-16">
+      <motion.section variants={cardVariants} className="relative py-14 sm:py-16">
         <div className="absolute -top-10 left-1/2 h-40 w-40 -translate-x-1/2 rounded-full bg-blue-300/30 blur-3xl animate-pulse" />
         <div className="absolute inset-x-12 top-1/2 -translate-y-1/2 rounded-3xl border border-blue-200/30 bg-gradient-to-b from-green-100/20 via-blue-100/20 to-orange-100/20 blur-2xl opacity-60 pointer-events-none" />
         <div className="max-w-6xl mx-auto px-4 sm:px-6 relative">
@@ -422,8 +465,10 @@ function Home() {
           </div>
           <div className="grid gap-8 md:grid-cols-2">
             {CERTIFIED_PARTNERS.map((partner) => (
-              <div
+              <motion.div
                 key={partner.name}
+                variants={cardVariants}
+                whileHover={hoverLift}
                 className="relative overflow-hidden rounded-3xl border border-blue-200/50 bg-white/90 px-8 py-10 backdrop-blur-lg shadow-lg transition-transform duration-300 hover:-translate-y-2"
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${partner.accent} opacity-30 animate-gradient-x`} />
@@ -507,14 +552,14 @@ function Home() {
                     </span>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
       <OfficesSection />
       
-    </main>
+    </motion.main>
   )
 }
 
