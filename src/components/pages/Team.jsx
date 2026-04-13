@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import maleImage from '../../assets/Team/Male-image.jpg';
 import avinashImage from '../../assets/Team/Avinash-R.jpg';
 import hariImage from '../../assets/Team/Hari-Prasad.jpg';
 import janeImage from '../../assets/Team/Jane-smith.jpg';
@@ -11,7 +12,7 @@ const Team = () => {
       name: 'John Doe',
       role: 'CEO & Founder',
       bio: 'Experienced leader in technology and innovation.',
-      image: 'https://api.dicebear.com/9.x/avataaars/svg?seed=john-leadership&mouth=smile',
+      image: maleImage,
     },
     {
       name: 'Jane Smith',
