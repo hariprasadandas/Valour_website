@@ -74,12 +74,14 @@ const Team = () => {
                   <motion.div
                     variants={imageVariants}
                     whileHover={{ scale: 1.03 }}
-                    className="mx-auto md:mx-0 w-full max-w-[240px] rounded-2xl bg-white p-2 ring-2 ring-blue-100 shadow-lg"
+                    className="mx-auto md:mx-0 w-full max-w-[240px] overflow-hidden rounded-2xl bg-white p-2 ring-2 ring-blue-100 shadow-lg"
                   >
                     <motion.img
                       src={member.image}
                       alt={member.name}
-                      className="h-56 w-full rounded-xl object-cover bg-slate-50"
+                      className={`h-56 w-full rounded-xl object-cover bg-slate-50 ${
+                        index === 0 ? 'object-[center_10%] scale-125' : 'object-center'
+                      }`}
                       whileHover={{ scale: 1.04 }}
                       transition={{ duration: 0.25 }}
                     />
