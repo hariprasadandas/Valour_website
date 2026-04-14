@@ -4,9 +4,12 @@ import maleImage from '../../assets/Team/Male-image.jpg';
 import avinashImage from '../../assets/Team/Avinash-R.jpg';
 import hariImage from '../../assets/Team/Hari-Prasad.jpg';
 import janeImage from '../../assets/Team/Jane-smith.jpg';
+import kavyaImage from '../../assets/Team/KavyaBM.jpg';
 import { cardVariants, hoverLift, imageVariants, sectionVariants, sectionViewport } from '../common/motionPresets';
 
 const Team = () => {
+  const femaleMembers = ['Jane Smith', 'Kavya B M'];
+
   const teamMembers = [
     {
       name: 'John Doe',
@@ -23,14 +26,20 @@ const Team = () => {
     {
       name: 'Avinash R',
       role: 'Project Lead',
-      bio: 'Expert in leading projects with precision, ensuring quality delivery and business alignment.',
+      bio: 'As a Project Lead, I drive the successful delivery of technology solutions by combining strong technical expertise with effective team leadership. I excel at coordinating cross-functional efforts, ensuring project alignment with business goals and delivering high-quality results within timelines.',
       image: avinashImage,
     },
     {
       name: 'Hari Prasad',
       role: 'Software Engineer',
-      bio: 'A dedicated Software Engineer with a strong foundation in modern development practices, I specialize in building reliable, scalable, and efficient solutions. With a passion for clean code and problem-solving, I consistently strive to deliver high-quality software that drives business value and enhances user experience.',
+      bio: 'A dedicated Software Engineer with a strong foundation in modern development practices, I specialize in building reliable, scalable and efficient solutions. With a passion for clean code and problem-solving, I consistently strive to deliver high-quality software that drives business value and enhances user experience.',
       image: hariImage,
+    },
+    {
+      name: 'Kavya B M',
+      role: 'Associate Engineer',
+      bio: 'I am passionate about software development and enjoy creating solutions that are both practical and efficient. I have a strong interest in understanding how systems work end-to-end, identifying issues and delivering clear and effective solutions. I have worked on projects that focus on solving real-world problems and improving user experience.',
+      image: kavyaImage,
     },
   ];
 
@@ -79,8 +88,12 @@ const Team = () => {
                     <motion.img
                       src={member.image}
                       alt={member.name}
-                      className={`h-56 w-full rounded-xl object-cover bg-slate-50 ${
-                        index === 0 ? 'object-[center_10%] scale-125' : 'object-center'
+                      className={`w-full rounded-xl bg-slate-50 ${
+                        index === 0
+                          ? 'h-56 object-cover object-[center_10%] scale-125'
+                          : femaleMembers.includes(member.name)
+                            ? 'h-48 object-contain object-center'
+                          : 'h-auto'
                       }`}
                       whileHover={{ scale: 1.04 }}
                       transition={{ duration: 0.25 }}
