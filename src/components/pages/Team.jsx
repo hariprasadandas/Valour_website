@@ -38,7 +38,7 @@ const Team = () => {
     {
       name: 'Kavya B M',
       role: 'Associate Engineer',
-      bio: 'I am passionate about software development and enjoy creating solutions that are both practical and efficient. I have a strong interest in understanding how systems work end-to-end, identifying issues and delivering clear and effective solutions. I have worked on projects that focus on solving real-world problems and improving user experience.',
+      bio: 'I am passionate about software development and enjoy building solutions that are practical and efficient. I have a strong interest in understanding how systems work end-to-end and in delivering clear, effective solutions. I have worked on projects focused on solving real-world problems and enhancing user experience.',
       image: kavyaImage,
     },
   ];
