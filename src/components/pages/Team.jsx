@@ -26,7 +26,7 @@ const Team = () => {
     {
       name: 'Avinash R',
       role: 'Project Lead',
-      bio: 'As a Project Lead, I drive the successful delivery of technology solutions by combining strong technical expertise with effective team leadership. I excel at coordinating cross-functional efforts, ensuring project alignment with business goals and delivering high-quality results within timelines.',
+      bio: 'As a Project Lead, I bring over 15 years of industry experience in successfully delivering projects across diverse domains. I focus on strategic planning, efficient execution, and leading teams to achieve high-quality results within timelines. My approach emphasizes clear communication, problem-solving, and ensuring client satisfaction through consistent performance and innovative solutions.',
       image: avinashImage,
     },
     {
