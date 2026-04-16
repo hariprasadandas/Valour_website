@@ -1,32 +1,48 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import thirumalImage from '../../assets/Team/Thirumal.jpg';
+import vikramImage from '../../assets/Team/Vikram-V.jpg';
 import maleImage from '../../assets/Team/Male-image.jpg';
 import avinashImage from '../../assets/Team/Avinash-R.jpg';
 import hariImage from '../../assets/Team/Hari-Prasad.jpg';
-import janeImage from '../../assets/Team/Jane-smith.jpg';
+import rachelImage from '../../assets/Team/Rachel-maid.jpg';
 import kavyaImage from '../../assets/Team/KavyaBM.jpg';
 import { cardVariants, hoverLift, imageVariants, sectionVariants, sectionViewport } from '../common/motionPresets';
 
 const Team = () => {
-  const femaleMembers = ['Jane Smith', 'Kavya B M'];
+  const femaleMembers = ['Rachel Maid', 'Kavya B M'];
 
   const teamMembers = [
     {
-      name: 'John Doe',
-      role: 'CEO & Founder',
-      bio: 'Experienced leader in technology and innovation.',
-      image: maleImage,
+      name: 'Vikram V',
+      role: 'Founder & COO',
+      bio: 'With 17 years of experience in the IT and Telecom industry, I have built strong expertise in software development, Telecommunications and AI transformation. As the Founder and COO of Valour, I focus on leading operations and delivering scalable, innovative technology solutions that help businesses improve efficiency and achieve sustainable growth.',
+      image: vikramImage,
+      cardClassName: 'p-4 sm:p-5',
+      imageFrameClassName: 'mx-auto md:mx-0 w-full max-w-[280px] overflow-hidden rounded-2xl bg-white p-3 ring-2 ring-blue-100 shadow-lg',
+      imageClassName: 'h-[320px] object-contain object-center bg-transparent',
+      contentClassName: 'text-center md:text-left md:pt-1',
     },
     {
-      name: 'Jane Smith',
+      name: 'Thirumal',
+      role: 'CEO & Co Founder',
+      bio: 'With over 15 years of experience in the IT industry, I specialize in software development, cloud solutions and digital transformation. As the CEO of Valour, I am committed to building innovative, scalable and reliable technology solutions that help businesses grow in a fast-evolving digital world.',
+      image: thirumalImage,
+      cardClassName: 'p-4 sm:p-5',
+      imageFrameClassName: 'mx-auto md:mx-0 w-full max-w-[280px] overflow-hidden rounded-2xl bg-white p-3 ring-2 ring-blue-100 shadow-lg',
+      imageClassName: 'h-[320px] object-contain object-center bg-transparent',
+      contentClassName: 'text-center md:text-left md:pt-1',
+    },
+    {
+      name: 'Rachel Maid',
       role: 'CTO',
-      bio: 'Expert in cloud architecture and software development.',
-      image: janeImage,
+      bio: 'Over 12 years of experience in the IT industry, I specialize in software architecture, cloud infrastructure, and emerging technologies. As the CTO of Valour, I lead the technical vision and engineering strategy, focusing on building scalable, secure and high-performance solutions that drive innovation and long-term growth.',
+      image: rachelImage,
     },
     {
       name: 'Avinash R',
       role: 'Project Lead',
-      bio: 'As a Project Lead, I bring over 15 years of industry experience in successfully delivering projects across diverse domains. I focus on strategic planning, efficient execution, and leading teams to achieve high-quality results within timelines. My approach emphasizes clear communication, problem-solving, and ensuring client satisfaction through consistent performance and innovative solutions.',
+      bio: 'As a Project Lead, I bring over 8 years of industry experience in successfully delivering projects across diverse domains. I focus on strategic planning, efficient execution and leading teams to achieve high-quality results within timelines. My approach emphasizes clear communication, problem-solving and ensuring client satisfaction through consistent performance and innovative solutions.',
       image: avinashImage,
     },
     {
@@ -79,28 +95,32 @@ const Team = () => {
               >
                 <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-[radial-gradient(circle_at_90%_10%,rgba(56,189,248,0.14),transparent_35%),radial-gradient(circle_at_10%_90%,rgba(59,130,246,0.12),transparent_35%)]" />
 
-                <div className="relative grid grid-cols-1 md:grid-cols-[240px_1fr] items-center gap-5 sm:gap-7">
+                <div
+                  className={`relative grid grid-cols-1 md:grid-cols-[240px_1fr] items-center gap-5 sm:gap-7 ${
+                    member.cardClassName ?? ''
+                  }`}
+                >
                   <motion.div
                     variants={imageVariants}
                     whileHover={{ scale: 1.03 }}
-                    className="mx-auto md:mx-0 w-full max-w-[240px] overflow-hidden rounded-2xl bg-white p-2 ring-2 ring-blue-100 shadow-lg"
+                    className={member.imageFrameClassName ?? 'mx-auto md:mx-0 w-full max-w-[240px] overflow-hidden rounded-2xl bg-white p-2 ring-2 ring-blue-100 shadow-lg'}
                   >
                     <motion.img
                       src={member.image}
                       alt={member.name}
-                      className={`w-full rounded-xl bg-slate-50 ${
+                      className={`w-full rounded-xl ${member.imageClassName ?? `bg-slate-50 ${
                         index === 0
                           ? 'h-56 object-cover object-[center_10%] scale-125'
                           : femaleMembers.includes(member.name)
                             ? 'h-48 object-contain object-center'
-                          : 'h-auto'
-                      }`}
+                            : 'h-auto'
+                      }`}`}
                       whileHover={{ scale: 1.04 }}
                       transition={{ duration: 0.25 }}
                     />
                   </motion.div>
 
-                  <div className="text-center md:text-left">
+                  <div className={member.contentClassName ?? 'text-center md:text-left'}>
                     <h3 className="text-xl sm:text-2xl font-bold text-gray-900">{member.name}</h3>
                     <p className="mt-1 inline-flex items-center rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-sm font-semibold text-blue-700">
                       {member.role}
