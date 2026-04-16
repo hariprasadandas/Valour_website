@@ -5,7 +5,7 @@ import vikramImage from '../../assets/Team/Vikram-V.jpg';
 import maleImage from '../../assets/Team/Male-image.jpg';
 import avinashImage from '../../assets/Team/Avinash-R.jpg';
 import hariImage from '../../assets/Team/Hari-Prasad.jpg';
-import rachelImage from '../../assets/Team/Rachel-maid.jpg';
+import rachelImage from '../../assets/Team/Rachel-Maid.jpg';
 import kavyaImage from '../../assets/Team/KavyaBM.jpg';
 import { cardVariants, hoverLift, imageVariants, sectionVariants, sectionViewport } from '../common/motionPresets';
 
