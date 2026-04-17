@@ -10,7 +10,6 @@ import relianceLogo from '../../assets/clients/Reliance.jpeg';
 import saasphireLogo from '../../assets/clients/Saasphire.png';
 import techCubeLogo from '../../assets/clients/Tech_Cube.jpeg';
 import thePalmsLogo from '../../assets/clients/The_Palms.jpeg';
-import volGroupLogo from '../../assets/clients/Vol Group.jpeg';
 import webfxmeLogo from '../../assets/clients/Webfxme.png';
 
 export const CLIENTS_DATA = [
@@ -53,11 +52,6 @@ export const CLIENTS_DATA = [
     name: 'Gart Group',
     description: 'Innovation-led digital transformation partner.',
     logo: gartGroupLogo,
-  },
-  {
-    name: 'Vol Group',
-    description: 'Technology-focused business group.',
-    logo: volGroupLogo,
   },
   {
     name: 'Webfxme',
